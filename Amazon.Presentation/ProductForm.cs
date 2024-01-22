@@ -83,7 +83,7 @@ namespace Amazon.Presentation
 
         }
 
-         // update product
+        // update product
         private void button3_Click(object sender, EventArgs e)
         {
             int ProductId = int.Parse(textBox5.Text);
@@ -145,6 +145,15 @@ namespace Amazon.Presentation
             textBox5.Text = string.Empty;
         }
 
-        
+        private void Search_Click(object sender, EventArgs e)
+        {
+            string name = ProductSearch.Text;
+
+            List<Product> FilterProduct = productService.SearchByName(name);
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = FilterProduct;
+
+        }
     }
 }

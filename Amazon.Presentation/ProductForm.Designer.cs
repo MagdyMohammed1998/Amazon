@@ -46,6 +46,8 @@ namespace Amazon.Presentation
             label6 = new Label();
             textBox5 = new TextBox();
             label2 = new Label();
+            ProductSearch = new TextBox();
+            Search = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -212,12 +214,33 @@ namespace Amazon.Presentation
             label2.TabIndex = 25;
             label2.Text = "ID";
             // 
+            // ProductSearch
+            // 
+            ProductSearch.Location = new Point(541, 440);
+            ProductSearch.Margin = new Padding(4, 3, 4, 3);
+            ProductSearch.Name = "ProductSearch";
+            ProductSearch.Size = new Size(152, 23);
+            ProductSearch.TabIndex = 26;
+            // 
+            // Search
+            // 
+            Search.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Search.Location = new Point(732, 440);
+            Search.Name = "Search";
+            Search.Size = new Size(70, 23);
+            Search.TabIndex = 27;
+            Search.Text = "Search";
+            Search.UseVisualStyleBackColor = true;
+            Search.Click += Search_Click;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Lavender;
             ClientSize = new Size(937, 558);
+            Controls.Add(Search);
+            Controls.Add(ProductSearch);
             Controls.Add(label2);
             Controls.Add(textBox5);
             Controls.Add(label6);
@@ -263,5 +286,7 @@ namespace Amazon.Presentation
         private Label label6;
         private TextBox textBox5;
         private Label label2;
+        private TextBox ProductSearch;
+        private Button Search;
     }
 }

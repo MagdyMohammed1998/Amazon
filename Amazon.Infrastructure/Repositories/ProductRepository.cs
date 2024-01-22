@@ -1,6 +1,7 @@
 ﻿using Amazon.Applacation.Contract;
 using Amazon.Context;
 using Amazon.Models.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,15 @@ namespace Amazon.Infrastructure.Repositories
 {
     public class ProductRepository : Repository<Product,int> , IProductRepository
     {
+        AmazonContext _Context;
+       public ProductRepository(AmazonContext context) : base(context) 
+        { 
+            _Context = context;
+        }
 
-       public ProductRepository(AmazonContext context) : base(context) { }
-
-
-
-
-
+        public List<Product> SearchByName(string name)
+        {
+            return _Context.Products.Where(p => p.Name.Contains(name)).ToList();
+        }
     }
 }

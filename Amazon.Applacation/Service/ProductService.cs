@@ -65,11 +65,24 @@ namespace Amazon.Applacation.Service
             }
         }
 
+        
+
         public Product Update(Product product2)
         {
             var Data = _productRepository.Update(product2);
             _productRepository.Save();
             return Data;
         }
+
+
+
+        public List<Product> SearchByName(string name)
+        {
+            var Data = _productRepository.SearchByName(name);
+            _productRepository.Save();
+            return Data;
+        }
+
+       
     }
 }
