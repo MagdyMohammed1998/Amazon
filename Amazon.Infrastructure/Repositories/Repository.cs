@@ -55,16 +55,10 @@ namespace Amazon.Infrastructure.Repositories
             return SetEntity.Update(entity).Entity;
         }
 
-
-
-
         public int Save()
         {
             return _Context.SaveChanges();
         }
-
-
-
 
 
 

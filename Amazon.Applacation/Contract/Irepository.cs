@@ -20,20 +20,7 @@ namespace Amazon.Applacation.Contract
 
         void Delete(T entity);
 
-
         public int Save();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
