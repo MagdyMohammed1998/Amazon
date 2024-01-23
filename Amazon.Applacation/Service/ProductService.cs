@@ -26,7 +26,6 @@ namespace Amazon.Applacation.Service
             return Data;
         }
 
-       
 
         public void Delete(Product product)
         {

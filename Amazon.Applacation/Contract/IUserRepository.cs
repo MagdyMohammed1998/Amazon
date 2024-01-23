@@ -10,8 +10,5 @@ namespace Amazon.Applacation.Contract
     public interface IUserRepository : Irepository<User , int>
     {
 
-        
-
-
     }
 }
