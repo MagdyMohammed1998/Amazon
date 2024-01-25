@@ -4,6 +4,7 @@ using Amazon.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Amazon.Context.Migrations
 {
     [DbContext(typeof(AmazonContext))]
-    partial class AmazonContextModelSnapshot : ModelSnapshot
+    [Migration("20240125064851_four")]
+    partial class four
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,10 +182,10 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminID")
+                    b.Property<int>("AdminID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryID")
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -305,19 +308,21 @@ namespace Amazon.Context.Migrations
 
             modelBuilder.Entity("Amazon.Models.Models.Product", b =>
                 {
-                    b.HasOne("Amazon.Models.Models.Admin", "admin")
+                    b.HasOne("Amazon.Models.Models.Admin", "Admin")
                         .WithMany("products")
                         .HasForeignKey("AdminID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.HasOne("Amazon.Models.Models.Category", "category")
+                    b.HasOne("Amazon.Models.Models.Category", "Category")
                         .WithMany("products")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("admin");
+                    b.Navigation("Admin");
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Admin", b =>

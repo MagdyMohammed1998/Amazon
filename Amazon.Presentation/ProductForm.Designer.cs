@@ -127,9 +127,9 @@ namespace Amazon.Presentation
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(261, 66);
+            dataGridView1.Location = new Point(314, 66);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(664, 314);
+            dataGridView1.Size = new Size(622, 314);
             dataGridView1.TabIndex = 16;
             // 
             // textBox2

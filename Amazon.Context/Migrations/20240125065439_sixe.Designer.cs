@@ -4,6 +4,7 @@ using Amazon.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Amazon.Context.Migrations
 {
     [DbContext(typeof(AmazonContext))]
-    partial class AmazonContextModelSnapshot : ModelSnapshot
+    [Migration("20240125065439_sixe")]
+    partial class sixe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -305,19 +308,19 @@ namespace Amazon.Context.Migrations
 
             modelBuilder.Entity("Amazon.Models.Models.Product", b =>
                 {
-                    b.HasOne("Amazon.Models.Models.Admin", "admin")
+                    b.HasOne("Amazon.Models.Models.Admin", "Admin")
                         .WithMany("products")
                         .HasForeignKey("AdminID")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Amazon.Models.Models.Category", "category")
+                    b.HasOne("Amazon.Models.Models.Category", "Category")
                         .WithMany("products")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("admin");
+                    b.Navigation("Admin");
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Admin", b =>

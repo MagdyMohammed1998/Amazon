@@ -4,6 +4,7 @@ using Amazon.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Amazon.Context.Migrations
 {
     [DbContext(typeof(AmazonContext))]
-    partial class AmazonContextModelSnapshot : ModelSnapshot
+    [Migration("20240124175156_one")]
+    partial class one
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,11 +37,11 @@ namespace Amazon.Context.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -77,20 +80,20 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CardID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("cardId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("productId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CardID");
+                    b.HasIndex("cardId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("productId");
 
                     b.ToTable("CardItems");
                 });
@@ -103,7 +106,7 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminID")
+                    b.Property<int>("AdminId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -112,7 +115,7 @@ namespace Amazon.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminID");
+                    b.HasIndex("AdminId");
 
                     b.ToTable("Categories");
                 });
@@ -135,12 +138,15 @@ namespace Amazon.Context.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UsertID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UsertID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -156,7 +162,7 @@ namespace Amazon.Context.Migrations
                     b.Property<int>("OrderID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -166,7 +172,7 @@ namespace Amazon.Context.Migrations
 
                     b.HasIndex("OrderID");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -179,10 +185,10 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AdminID")
+                    b.Property<int>("AdminID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryID")
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -248,14 +254,14 @@ namespace Amazon.Context.Migrations
                 {
                     b.HasOne("Amazon.Models.Models.Card", "card")
                         .WithMany("cardItems")
-                        .HasForeignKey("CardID")
+                        .HasForeignKey("cardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Amazon.Models.Models.Product", "product")
                         .WithMany("CardItems")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("productId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("card");
@@ -267,8 +273,9 @@ namespace Amazon.Context.Migrations
                 {
                     b.HasOne("Amazon.Models.Models.Admin", "Admin")
                         .WithMany("categories")
-                        .HasForeignKey("AdminID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Admin");
                 });
@@ -277,8 +284,8 @@ namespace Amazon.Context.Migrations
                 {
                     b.HasOne("Amazon.Models.Models.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UsertID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -294,8 +301,8 @@ namespace Amazon.Context.Migrations
 
                     b.HasOne("Amazon.Models.Models.Product", "Product")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -305,19 +312,21 @@ namespace Amazon.Context.Migrations
 
             modelBuilder.Entity("Amazon.Models.Models.Product", b =>
                 {
-                    b.HasOne("Amazon.Models.Models.Admin", "admin")
+                    b.HasOne("Amazon.Models.Models.Admin", "Admin")
                         .WithMany("products")
                         .HasForeignKey("AdminID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Amazon.Models.Models.Category", "category")
+                    b.HasOne("Amazon.Models.Models.Category", "Category")
                         .WithMany("products")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("admin");
+                    b.Navigation("Admin");
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Admin", b =>

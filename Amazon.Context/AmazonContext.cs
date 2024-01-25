@@ -37,13 +37,13 @@ namespace Amazon.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()
-                 .HasOne(p => p.Category)
+                 .HasOne(p => p.category)
                  .WithMany(c => c.products)
                  .HasForeignKey(p => p.CategoryID)
                  .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Product>()
-                .HasOne(p => p.Admin)
+                .HasOne(p => p.admin)
                 .WithMany(a => a.products)
                 .HasForeignKey(p => p.AdminID)
                 .OnDelete(DeleteBehavior.Restrict);
