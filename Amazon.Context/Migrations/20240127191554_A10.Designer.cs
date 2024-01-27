@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Amazon.Context.Migrations
 {
     [DbContext(typeof(AmazonContext))]
-    [Migration("20240119172313_start1")]
-    partial class start1
+    [Migration("20240127191554_A10")]
+    partial class A10
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,10 @@ namespace Amazon.Context.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -102,7 +106,7 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdminID")
+                    b.Property<int?>("AdminID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -178,10 +182,10 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdminID")
+                    b.Property<int?>("AdminID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -215,10 +219,6 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -228,10 +228,6 @@ namespace Amazon.Context.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -275,8 +271,7 @@ namespace Amazon.Context.Migrations
                     b.HasOne("Amazon.Models.Models.Admin", "Admin")
                         .WithMany("categories")
                         .HasForeignKey("AdminID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Admin");
                 });
@@ -313,21 +308,19 @@ namespace Amazon.Context.Migrations
 
             modelBuilder.Entity("Amazon.Models.Models.Product", b =>
                 {
-                    b.HasOne("Amazon.Models.Models.Admin", "Admin")
+                    b.HasOne("Amazon.Models.Models.Admin", "admin")
                         .WithMany("products")
                         .HasForeignKey("AdminID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Amazon.Models.Models.Category", "Category")
+                    b.HasOne("Amazon.Models.Models.Category", "category")
                         .WithMany("products")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("Admin");
+                    b.Navigation("admin");
 
-                    b.Navigation("Category");
+                    b.Navigation("category");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Admin", b =>

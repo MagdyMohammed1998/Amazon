@@ -30,7 +30,6 @@
         {
             dataGridView1 = new DataGridView();
             label3 = new Label();
-            categoryidtext = new TextBox();
             label1 = new Label();
             button1 = new Button();
             button2 = new Button();
@@ -38,7 +37,8 @@
             button4 = new Button();
             button7 = new Button();
             CategoryNameText = new TextBox();
-            label2 = new Label();
+            Search = new Button();
+            texSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -61,19 +61,11 @@
             label3.TabIndex = 18;
             label3.Text = "Category Mangment";
             // 
-            // categoryidtext
-            // 
-            categoryidtext.Location = new Point(64, 99);
-            categoryidtext.Margin = new Padding(4, 3, 4, 3);
-            categoryidtext.Name = "categoryidtext";
-            categoryidtext.Size = new Size(152, 23);
-            categoryidtext.TabIndex = 25;
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(4, 171);
+            label1.Location = new Point(12, 171);
             label1.Name = "label1";
             label1.Size = new Size(49, 19);
             label1.TabIndex = 26;
@@ -135,21 +127,30 @@
             // 
             // CategoryNameText
             // 
-            CategoryNameText.Location = new Point(64, 171);
+            CategoryNameText.Location = new Point(93, 171);
             CategoryNameText.Margin = new Padding(4, 3, 4, 3);
             CategoryNameText.Name = "CategoryNameText";
             CategoryNameText.Size = new Size(152, 23);
             CategoryNameText.TabIndex = 32;
             // 
-            // label2
+            // Search
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 103);
-            label2.Name = "label2";
-            label2.Size = new Size(27, 19);
-            label2.TabIndex = 33;
-            label2.Text = "ID";
+            Search.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Search.Location = new Point(4, 84);
+            Search.Name = "Search";
+            Search.Size = new Size(75, 23);
+            Search.TabIndex = 33;
+            Search.Text = "Search";
+            Search.UseVisualStyleBackColor = true;
+            Search.Click += Search_Click;
+            // 
+            // texSearch
+            // 
+            texSearch.Location = new Point(93, 86);
+            texSearch.Margin = new Padding(4, 3, 4, 3);
+            texSearch.Name = "texSearch";
+            texSearch.Size = new Size(152, 23);
+            texSearch.TabIndex = 34;
             // 
             // CategoyForm
             // 
@@ -157,7 +158,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(898, 516);
-            Controls.Add(label2);
+            Controls.Add(texSearch);
+            Controls.Add(Search);
             Controls.Add(CategoryNameText);
             Controls.Add(button7);
             Controls.Add(button4);
@@ -165,7 +167,6 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
-            Controls.Add(categoryidtext);
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Name = "CategoyForm";
@@ -179,7 +180,6 @@
 
         private DataGridView dataGridView1;
         private Label label3;
-        private TextBox categoryidtext;
         private Label label1;
         private Button button1;
         private Button button2;
@@ -187,6 +187,7 @@
         private Button button4;
         private Button button7;
         private TextBox CategoryNameText;
-        private Label label2;
+        private Button Search;
+        private TextBox texSearch;
     }
 }

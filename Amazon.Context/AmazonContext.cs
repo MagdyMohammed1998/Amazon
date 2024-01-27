@@ -30,7 +30,7 @@ namespace Amazon.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-NP1E6RM;Initial Catalog=AmazonDB;Integrated Security=True;Trust Server Certificate=True;encrypt=false");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-NP1E6RM;Initial Catalog=AmazonSohage;Integrated Security=True;Trust Server Certificate=True;encrypt=false");
         }
 
 

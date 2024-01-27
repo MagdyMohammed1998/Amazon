@@ -18,6 +18,7 @@ namespace Amazon.Models.Models
         public int Quantity { get; set; }
 
         public string Description { get; set; }
+       
         public int? AdminID { get; set; }
         public Admin admin { get; set; }
 

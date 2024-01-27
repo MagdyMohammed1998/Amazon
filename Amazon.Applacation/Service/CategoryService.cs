@@ -66,5 +66,24 @@ namespace Amazon.Applacation.Service
             _categoryRepository.Save();
             return Data;
         }
+
+
+
+
+        public List<Category> SearchByName(string name)
+        {
+            var Data = _categoryRepository.SearchByName(name);
+            _categoryRepository.Save();
+            return Data;
+        }
+
+
+
+
+
+
+
+
+
     }
 }

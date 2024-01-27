@@ -20,7 +20,7 @@ namespace Amazon.Applacation.Service
         public List<Category> GetAll();
 
 
-
+        public List<Category> SearchByName(string name);
 
     }
 }

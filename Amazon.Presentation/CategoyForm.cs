@@ -32,6 +32,14 @@ namespace Amazon.Presentation
         {
             string name = CategoryNameText.Text;
 
+            var existingCatgory = categoryService.GetAll().FirstOrDefault(p => p.Name == name);
+            if (existingCatgory != null)
+            {
+                MessageBox.Show($"Product with name '{name}' already exists.");
+                return;
+            }
+
+
             Category NewCategory = new Category()
             {
                 Name = name
@@ -48,38 +56,54 @@ namespace Amazon.Presentation
         // delete category
         private void button2_Click(object sender, EventArgs e)
         {
-            int CategoryId = int.Parse(categoryidtext.Text);
+            int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
             Category categoryToDelete = categoryService.GetById(CategoryId);
+            if (categoryToDelete != null) 
+            {
+                categoryService.Delete(categoryToDelete);
 
-            categoryService.Delete(categoryToDelete);
+                CrearTextBoxes();
 
-            CrearTextBoxes();
+                RefreshDataGridView();
 
-            RefreshDataGridView();
+                MessageBox.Show("Category Deleted Successfuly:");
+            }
+            else
+            {
+                MessageBox.Show("Please select a Category to delete.");
+            }
 
-            MessageBox.Show("Category Deleted Successfuly:");
 
         }
 
         // update category
         private void button3_Click(object sender, EventArgs e)
         {
-            int CategoryId = int.Parse(categoryidtext.Text);
+            int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
             Category CategoryToUpdate = categoryService.GetById(CategoryId);
 
-            string NewCategory = CategoryNameText.Text;
+            if(CategoryToUpdate != null)
+            {
+                string NewCategory = CategoryNameText.Text;
 
-            CategoryToUpdate.Name = NewCategory;
+                CategoryToUpdate.Name = NewCategory;
 
-            categoryService.Update(CategoryToUpdate);
+                categoryService.Update(CategoryToUpdate);
 
-            CrearTextBoxes();
+                CrearTextBoxes();
 
-            RefreshDataGridView();
+                RefreshDataGridView();
 
-            MessageBox.Show("Category Updated Successfuly");
+                MessageBox.Show("Category Updated Successfuly");
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a Category to update.");
+            }
+
 
         }
 
@@ -115,10 +139,16 @@ namespace Amazon.Presentation
 
         private void CrearTextBoxes()
         {
-            categoryidtext.Text = string.Empty;
+            
             CategoryNameText.Text = string.Empty;
         }
 
-       
+        private void Search_Click(object sender, EventArgs e)
+        {
+            string name = texSearch.Text;
+            List<Category> filterCategory = categoryService.SearchByName(name);
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = filterCategory;
+        }
     }
 }

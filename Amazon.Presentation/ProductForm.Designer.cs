@@ -44,8 +44,6 @@ namespace Amazon.Presentation
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox5 = new TextBox();
-            label2 = new Label();
             ProductSearch = new TextBox();
             Search = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -196,24 +194,6 @@ namespace Amazon.Presentation
             label6.TabIndex = 23;
             label6.Text = "Description";
             // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(33, 66);
-            textBox5.Margin = new Padding(4, 3, 4, 3);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(152, 23);
-            textBox5.TabIndex = 24;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(71, 44);
-            label2.Name = "label2";
-            label2.Size = new Size(27, 19);
-            label2.TabIndex = 25;
-            label2.Text = "ID";
-            // 
             // ProductSearch
             // 
             ProductSearch.Location = new Point(541, 440);
@@ -241,8 +221,6 @@ namespace Amazon.Presentation
             ClientSize = new Size(937, 558);
             Controls.Add(Search);
             Controls.Add(ProductSearch);
-            Controls.Add(label2);
-            Controls.Add(textBox5);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -284,8 +262,6 @@ namespace Amazon.Presentation
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox5;
-        private Label label2;
         private TextBox ProductSearch;
         private Button Search;
     }

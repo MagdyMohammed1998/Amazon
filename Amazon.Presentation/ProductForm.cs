@@ -16,144 +16,132 @@ namespace Amazon.Presentation
 {
     public partial class ProductForm : Form
     {
-
         IProductService productService;
+
         public ProductForm()
         {
             InitializeComponent();
             productService = new ProductService(new ProductRepository(new AmazonContext()));
         }
 
-        public decimal Price { get; private set; }
-        public int Quantity { get; private set; }
-        public string Description { get; private set; }
-
-
-        // add product
+        // Add product
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-
             string name = textBox1.Text;
             decimal price = decimal.Parse(textBox2.Text);
             int quantity = int.Parse(textBox3.Text);
             string descrip = textBox4.Text;
 
+            var existingProduct = productService.GetAll().FirstOrDefault(p => p.Name == name);
+            if (existingProduct != null)
+            {
+                MessageBox.Show($"Product with name '{name}' already exists.");
+                return;
+            }
 
-
-            Product NewProduct = new Product()
+            Product newProduct = new Product()
             {
                 Name = name,
                 Price = price,
                 Quantity = quantity,
                 Description = descrip
-
-
-
             };
 
-
-            productService.Add(NewProduct);
+            productService.Add(newProduct);
 
             CrearTextBoxes();
-
-
             RefreshDataGridView();
 
-
-            MessageBox.Show("Product Add Succssifuly");
-
-
+            MessageBox.Show("Product added successfully");
         }
 
-        // delete product
+        // Delete product
         private void button2_Click(object sender, EventArgs e)
         {
-            int ProductId = int.Parse(textBox5.Text);
-            Product ProductToDelete = productService.GetById(ProductId);
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int selectedProductId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+                Product productToDelete = productService.GetById(selectedProductId);
 
-            productService.Delete(ProductToDelete);
-
-            CrearTextBoxes();
-
-            RefreshDataGridView();
-
-            MessageBox.Show("Product Deleted Successfuly");
-
+                if (productToDelete != null)
+                {
+                    productService.Delete(productToDelete);
+                    CrearTextBoxes();
+                    RefreshDataGridView();
+                    MessageBox.Show("Product deleted successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Please select a product to delete.");
+                }
+            }
         }
 
-        // update product
+        // Update product
         private void button3_Click(object sender, EventArgs e)
         {
-            int ProductId = int.Parse(textBox5.Text);
-            Product ProductToUpdate = productService.GetById(ProductId);
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int selectedProductId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+                Product productToUpdate = productService.GetById(selectedProductId);
 
+                if (productToUpdate != null)
+                {
+                    string newName = textBox1.Text;
+                    decimal newPrice = decimal.Parse(textBox2.Text);
+                    int newQuantity = int.Parse(textBox3.Text);
+                    string newDescription = textBox4.Text;
 
-            string NewName = textBox1.Text;
-            decimal NewPric = decimal.Parse(textBox2.Text);
-            int NewQuantity = int.Parse(textBox3.Text);
-            string NewDescription = textBox4.Text;
+                    productToUpdate.Name = newName;
+                    productToUpdate.Price = newPrice;
+                    productToUpdate.Quantity = newQuantity;
+                    productToUpdate.Description = newDescription;
 
-            ProductToUpdate.Name = NewName;
-            ProductToUpdate.Price = NewPric;
-            ProductToUpdate.Quantity = NewQuantity;
-            ProductToUpdate.Description = NewDescription;
+                    productService.Update(productToUpdate);
 
+                    CrearTextBoxes();
+                    RefreshDataGridView();
 
-            productService.Update(ProductToUpdate);
-
-            CrearTextBoxes();
-            RefreshDataGridView();
-
-            MessageBox.Show("Product Updated Successfuly");
-
-
+                    MessageBox.Show("Product updated successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Please select a product to update.");
+                }
+            }
         }
 
-        // getall product
+        // Get all products
         private void button4_Click(object sender, EventArgs e)
         {
-            List<Product> AllProducts = productService.GetAll();
-
-            dataGridView1.DataSource = AllProducts;
-
+            List<Product> allProducts = productService.GetAll();
+            dataGridView1.DataSource = allProducts;
         }
 
-
-
-
-
-
+        // Refresh DataGridView
         private void RefreshDataGridView()
         {
-            List<Product> AllProducts = productService.GetAll();
+            List<Product> allProducts = productService.GetAll();
             dataGridView1.DataSource = null;
-
-            dataGridView1.DataSource = AllProducts;
-
+            dataGridView1.DataSource = allProducts;
         }
 
-
-
+        // Clear text boxes
         private void CrearTextBoxes()
         {
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
             textBox4.Text = string.Empty;
-            textBox5.Text = string.Empty;
         }
 
+        // Search for products
         private void Search_Click(object sender, EventArgs e)
         {
             string name = ProductSearch.Text;
-
-            List<Product> FilterProduct = productService.SearchByName(name);
-
+            List<Product> filterProduct = productService.SearchByName(name);
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = FilterProduct;
-
+            dataGridView1.DataSource = filterProduct;
         }
     }
 }
