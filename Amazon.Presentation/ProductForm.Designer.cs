@@ -48,6 +48,7 @@ namespace Amazon.Presentation
             Search = new Button();
             comboBox1 = new ComboBox();
             pictureBox1 = new PictureBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -132,7 +133,6 @@ namespace Amazon.Presentation
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(622, 314);
             dataGridView1.TabIndex = 16;
-          
             // 
             // textBox2
             // 
@@ -237,12 +237,23 @@ namespace Amazon.Presentation
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(71, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(71, 19);
+            label2.TabIndex = 31;
+            label2.Text = "Category";
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Lavender;
             ClientSize = new Size(1033, 712);
+            Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(comboBox1);
             Controls.Add(Search);
@@ -293,5 +304,6 @@ namespace Amazon.Presentation
         private Button Search;
         private ComboBox comboBox1;
         private PictureBox pictureBox1;
+        private Label label2;
     }
 }
