@@ -10,7 +10,7 @@ namespace Amazon.Applacation.Contract
     public interface Irepository<T,Tid>
     {
 
-        List<T> GetALL();
+        IQueryable <T> GetALL();
 
         T GetById(Tid id);
 

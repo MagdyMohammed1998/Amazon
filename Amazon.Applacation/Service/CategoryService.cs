@@ -39,7 +39,7 @@ namespace Amazon.Applacation.Service
             }
         }
 
-        public List<Category> GetAll()
+        public IQueryable <Category> GetAll()
         {
             var Data = _categoryRepository.GetALL();
             _categoryRepository.Save();
@@ -70,7 +70,7 @@ namespace Amazon.Applacation.Service
 
 
 
-        public List<Category> SearchByName(string name)
+        public IQueryable <Category> SearchByName(string name)
         {
             var Data = _categoryRepository.SearchByName(name);
             _categoryRepository.Save();

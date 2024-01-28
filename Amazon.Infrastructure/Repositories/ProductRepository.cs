@@ -18,9 +18,9 @@ namespace Amazon.Infrastructure.Repositories
             _Context = context;
         }
 
-        public List<Product> SearchByName(string name)
+        public IQueryable <Product> SearchByName(string name)
         {
-            return _Context.Products.Where(p => p.Name.Contains(name)).ToList();
+            return _Context.Products.Where(p => p.Name.Contains(name));
         }
     }
 }

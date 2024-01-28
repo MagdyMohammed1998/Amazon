@@ -132,6 +132,7 @@ namespace Amazon.Presentation
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(622, 314);
             dataGridView1.TabIndex = 16;
+          
             // 
             // textBox2
             // 
@@ -223,7 +224,6 @@ namespace Amazon.Presentation
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(150, 23);
             comboBox1.TabIndex = 29;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // pictureBox1
             // 

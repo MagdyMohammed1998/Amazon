@@ -27,6 +27,26 @@ namespace Amazon.Presentation
             productService = new ProductService(new ProductRepository(new AmazonContext()));
             categoryService = new CategoryService(new CategoryRepository(new AmazonContext()));
             LoadCategories();
+
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+        }
+
+        private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var selectedRow = dataGridView1.SelectedRows[0];
+
+                var product = (Product)selectedRow.DataBoundItem;
+
+                textBox1.Text = product.Name;
+                textBox2.Text = product.Price.ToString();
+                textBox3.Text = product.Quantity.ToString();
+                textBox4.Text = product.Description;
+
+
+                pictureBox1.ImageLocation = product.Image;
+            }
         }
 
         string ImagePath;
@@ -37,6 +57,7 @@ namespace Amazon.Presentation
             decimal price = decimal.Parse(textBox2.Text);
             int quantity = int.Parse(textBox3.Text);
             string descrip = textBox4.Text;
+            int categoryId = (int)comboBox1.SelectedValue;
 
             var existingProduct = productService.GetAll().FirstOrDefault(p => p.Name == name);
             if (existingProduct != null)
@@ -51,7 +72,9 @@ namespace Amazon.Presentation
                 Price = price,
                 Quantity = quantity,
                 Description = descrip,
+                CategoryID = categoryId,
                 Image = ImagePath
+
             };
 
             productService.Add(newProduct);
@@ -90,6 +113,7 @@ namespace Amazon.Presentation
                 {
                     productService.Delete(productToDelete);
                     CrearTextBoxes();
+                    clearpictur();
                     RefreshDataGridView();
                     MessageBox.Show("Product deleted successfully");
                 }
@@ -123,6 +147,7 @@ namespace Amazon.Presentation
                     productService.Update(productToUpdate);
 
                     CrearTextBoxes();
+                    clearpictur();
                     RefreshDataGridView();
 
                     MessageBox.Show("Product updated successfully");
@@ -137,16 +162,16 @@ namespace Amazon.Presentation
         // Get all products
         private void button4_Click(object sender, EventArgs e)
         {
-            List<Product> allProducts = productService.GetAll();
-            dataGridView1.DataSource = allProducts;
+            IQueryable<Product> allProducts = productService.GetAll();
+            dataGridView1.DataSource = allProducts.ToList();
         }
 
         // Refresh DataGridView
         private void RefreshDataGridView()
         {
-            List<Product> allProducts = productService.GetAll();
+            IQueryable<Product> allProducts = productService.GetAll();
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = allProducts;
+            dataGridView1.DataSource = allProducts.ToList();
         }
 
         // Clear text boxes
@@ -168,30 +193,20 @@ namespace Amazon.Presentation
         private void Search_Click(object sender, EventArgs e)
         {
             string name = ProductSearch.Text;
-            List<Product> filterProduct = productService.SearchByName(name);
+            IQueryable<Product> filterProduct = productService.SearchByName(name);
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = filterProduct;
+            dataGridView1.DataSource = filterProduct.ToList();
         }
 
 
-         private void LoadCategories()
+        private void LoadCategories()
         {
-            categories = categoryService.GetAll();
+            categories = categoryService.GetAll().ToList();
             comboBox1.DataSource = categories;
             comboBox1.DisplayMember = "Name";
             comboBox1.ValueMember = "Id";
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedItem != null)
-            {
-                Category selectedCategory = (Category)comboBox1.SelectedItem;
-                int categoryId = selectedCategory.Id;
-                string categoryName = selectedCategory.Name;
-
-                
-            }
-        }
+        
     }
 }

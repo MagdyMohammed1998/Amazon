@@ -25,6 +25,18 @@ namespace Amazon.Presentation
 
             categoryService = new CategoryService(new CategoryRepository(new AmazonContext()));
 
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+        }
+
+         private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count > 0)
+            {
+                var selectedRow = dataGridView1.SelectedRows[0];
+                var category = (Category)selectedRow.DataBoundItem;
+
+                CategoryNameText.Text = category.Name;
+            }
         }
 
         // add category
@@ -111,8 +123,8 @@ namespace Amazon.Presentation
         // getall category
         private void button4_Click(object sender, EventArgs e)
         {
-            List<Category> categories = categoryService.GetAll();
-            dataGridView1.DataSource = categories;
+            IQueryable <Category> categories = categoryService.GetAll();
+            dataGridView1.DataSource = categories.ToList();
 
         }
 
@@ -123,11 +135,11 @@ namespace Amazon.Presentation
 
         private void RefreshDataGridView()
         {
-            List<Category> Categories = categoryService.GetAll();
+            IQueryable <Category> Categories = categoryService.GetAll();
 
             dataGridView1.DataSource = null;
 
-            dataGridView1.DataSource = Categories;
+            dataGridView1.DataSource = Categories.ToList();
 
         }
 
@@ -146,7 +158,7 @@ namespace Amazon.Presentation
         private void Search_Click(object sender, EventArgs e)
         {
             string name = texSearch.Text;
-            List<Category> filterCategory = categoryService.SearchByName(name);
+            IQueryable <Category> filterCategory = categoryService.SearchByName(name);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = filterCategory;
         }

@@ -17,7 +17,7 @@ namespace Amazon.Applacation.Service
         }
 
 
-        public List<User> GetAllUsers()
+        public IQueryable<User> GetAllUsers()
         {
             return _userRepository.GetALL();
         }

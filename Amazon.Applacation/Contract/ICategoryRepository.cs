@@ -12,7 +12,7 @@ namespace Amazon.Applacation.Contract
 
 
 
-        public List<Category> SearchByName(string name);
+        IQueryable <Category> SearchByName(string name);
 
 
 

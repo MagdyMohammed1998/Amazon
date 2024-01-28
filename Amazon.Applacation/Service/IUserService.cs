@@ -6,7 +6,7 @@ namespace Amazon.Applacation.Service
     {
         User AddUser(User user);
         void DeleteUser(User user);
-        List<User> GetAllUsers();
+        IQueryable<User> GetAllUsers();
         User GetUserById(int id);
         User UpdateUser(User user);
     }

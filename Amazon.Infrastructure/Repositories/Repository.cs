@@ -40,9 +40,9 @@ namespace Amazon.Infrastructure.Repositories
             }
         }
 
-        public List<T> GetALL()
+        public IQueryable <T> GetALL()
         {
-            return SetEntity.ToList();
+            return SetEntity.AsQueryable();
         }
 
         public T GetById(Tid id)
