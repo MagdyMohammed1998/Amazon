@@ -19,6 +19,7 @@ namespace Amazon.Models.Models
 
         public string Description { get; set; }
        
+        public string Image {  get; set; }
         public int? AdminID { get; set; }
         public Admin admin { get; set; }
 

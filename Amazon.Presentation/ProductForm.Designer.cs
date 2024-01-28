@@ -46,13 +46,16 @@ namespace Amazon.Presentation
             label6 = new Label();
             ProductSearch = new TextBox();
             Search = new Button();
+            comboBox1 = new ComboBox();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(21, 440);
+            button1.Location = new Point(39, 598);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 4;
@@ -63,7 +66,7 @@ namespace Amazon.Presentation
             // button2
             // 
             button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(137, 440);
+            button2.Location = new Point(158, 598);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 6;
@@ -74,7 +77,7 @@ namespace Amazon.Presentation
             // button3
             // 
             button3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(261, 440);
+            button3.Location = new Point(281, 598);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 7;
@@ -95,7 +98,7 @@ namespace Amazon.Presentation
             // button4
             // 
             button4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(399, 440);
+            button4.Location = new Point(415, 598);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 11;
@@ -106,7 +109,7 @@ namespace Amazon.Presentation
             // button7
             // 
             button7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.Location = new Point(784, 511);
+            button7.Location = new Point(920, 630);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 14;
@@ -125,7 +128,7 @@ namespace Amazon.Presentation
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(314, 66);
+            dataGridView1.Location = new Point(373, 54);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(622, 314);
             dataGridView1.TabIndex = 16;
@@ -196,7 +199,7 @@ namespace Amazon.Presentation
             // 
             // ProductSearch
             // 
-            ProductSearch.Location = new Point(541, 440);
+            ProductSearch.Location = new Point(578, 598);
             ProductSearch.Margin = new Padding(4, 3, 4, 3);
             ProductSearch.Name = "ProductSearch";
             ProductSearch.Size = new Size(152, 23);
@@ -205,7 +208,7 @@ namespace Amazon.Presentation
             // Search
             // 
             Search.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Search.Location = new Point(732, 440);
+            Search.Location = new Point(773, 598);
             Search.Name = "Search";
             Search.Size = new Size(70, 23);
             Search.TabIndex = 27;
@@ -213,12 +216,35 @@ namespace Amazon.Presentation
             Search.UseVisualStyleBackColor = true;
             Search.Click += Search_Click;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(42, 54);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(150, 23);
+            comboBox1.TabIndex = 29;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.White;
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Location = new Point(26, 344);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(252, 161);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 30;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Lavender;
-            ClientSize = new Size(937, 558);
+            ClientSize = new Size(1033, 712);
+            Controls.Add(pictureBox1);
+            Controls.Add(comboBox1);
             Controls.Add(Search);
             Controls.Add(ProductSearch);
             Controls.Add(label6);
@@ -240,6 +266,7 @@ namespace Amazon.Presentation
             Name = "ProductForm";
             Text = "ProductMangment";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -264,5 +291,7 @@ namespace Amazon.Presentation
         private Label label6;
         private TextBox ProductSearch;
         private Button Search;
+        private ComboBox comboBox1;
+        private PictureBox pictureBox1;
     }
 }
