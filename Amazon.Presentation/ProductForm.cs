@@ -18,12 +18,18 @@ namespace Amazon.Presentation
     {
         IProductService productService;
 
+        private List<Category> categories;
+        private ICategoryService categoryService;
+
         public ProductForm()
         {
             InitializeComponent();
             productService = new ProductService(new ProductRepository(new AmazonContext()));
+            categoryService = new CategoryService(new CategoryRepository(new AmazonContext()));
+            LoadCategories();
         }
 
+        string ImagePath;
         // Add product
         private void button1_Click(object sender, EventArgs e)
         {
@@ -44,15 +50,32 @@ namespace Amazon.Presentation
                 Name = name,
                 Price = price,
                 Quantity = quantity,
-                Description = descrip
+                Description = descrip,
+                Image = ImagePath
             };
 
             productService.Add(newProduct);
+            string NewPath = Environment.CurrentDirectory + "\\images\\Product\\" + newProduct.Id + ".jpg";
+            File.Copy(ImagePath, NewPath);
+
+            newProduct.Image = NewPath;
 
             CrearTextBoxes();
+            clearpictur();
             RefreshDataGridView();
 
             MessageBox.Show("Product added successfully");
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImagePath = openFileDialog.FileName;
+                pictureBox1.ImageLocation = openFileDialog.FileName;
+            }
+
         }
 
         // Delete product
@@ -135,6 +158,12 @@ namespace Amazon.Presentation
             textBox4.Text = string.Empty;
         }
 
+
+        private void clearpictur()
+        {
+            pictureBox1.ImageLocation = null;
+        }
+
         // Search for products
         private void Search_Click(object sender, EventArgs e)
         {
@@ -142,6 +171,27 @@ namespace Amazon.Presentation
             List<Product> filterProduct = productService.SearchByName(name);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = filterProduct;
+        }
+
+
+         private void LoadCategories()
+        {
+            categories = categoryService.GetAll();
+            comboBox1.DataSource = categories;
+            comboBox1.DisplayMember = "Name";
+            comboBox1.ValueMember = "Id";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null)
+            {
+                Category selectedCategory = (Category)comboBox1.SelectedItem;
+                int categoryId = selectedCategory.Id;
+                string categoryName = selectedCategory.Name;
+
+                
+            }
         }
     }
 }

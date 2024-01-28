@@ -15,9 +15,9 @@ namespace Amazon.Presentation
 
             //Application.Run(new Registration());
 
-            //Application.Run(new ProductForm());
+            Application.Run(new ProductForm());
 
-            Application.Run(new CategoyForm());
+            //Application.Run(new CategoyForm());
 
 
 
