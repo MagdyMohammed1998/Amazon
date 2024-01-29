@@ -40,7 +40,7 @@ namespace Amazon.Applacation.Service
             }
         }
 
-        public List<Product> GetAll()
+        public IQueryable<Product> GetAll()
         {
            var Data = _productRepository.GetALL();
             _productRepository.Save();

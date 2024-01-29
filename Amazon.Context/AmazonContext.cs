@@ -27,13 +27,10 @@ namespace Amazon.Context
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
 
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-NP1E6RM;Initial Catalog=AmazonDB;Integrated Security=True;Trust Server Certificate=True;encrypt=false");
+            optionsBuilder.UseSqlServer("Data Source=OMNIA-EZZ\\SQLEXPRESS;Initial Catalog=AmazonDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
         }
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()

@@ -33,14 +33,10 @@ namespace Amazon.Presentation
         private void button1_Click(object sender, EventArgs e)
         {
 
-
-
             string name = textBox1.Text;
             decimal price = decimal.Parse(textBox2.Text);
             int quantity = int.Parse(textBox3.Text);
             string descrip = textBox4.Text;
-
-
 
             Product NewProduct = new Product()
             {
@@ -48,22 +44,14 @@ namespace Amazon.Presentation
                 Price = price,
                 Quantity = quantity,
                 Description = descrip
-
-
-
             };
-
 
             productService.Add(NewProduct);
 
             CrearTextBoxes();
-
-
             RefreshDataGridView();
 
-
             MessageBox.Show("Product Add Succssifuly");
-
 
         }
 
@@ -89,7 +77,6 @@ namespace Amazon.Presentation
             int ProductId = int.Parse(textBox5.Text);
             Product ProductToUpdate = productService.GetById(ProductId);
 
-
             string NewName = textBox1.Text;
             decimal NewPric = decimal.Parse(textBox2.Text);
             int NewQuantity = int.Parse(textBox3.Text);
@@ -100,7 +87,6 @@ namespace Amazon.Presentation
             ProductToUpdate.Quantity = NewQuantity;
             ProductToUpdate.Description = NewDescription;
 
-
             productService.Update(ProductToUpdate);
 
             CrearTextBoxes();
@@ -108,32 +94,25 @@ namespace Amazon.Presentation
 
             MessageBox.Show("Product Updated Successfuly");
 
-
         }
 
         // getall product
         private void button4_Click(object sender, EventArgs e)
         {
-            List<Product> AllProducts = productService.GetAll();
+            IQueryable<Product> AllProducts = productService.GetAll();
 
             dataGridView1.DataSource = AllProducts;
 
         }
-
-
-
-
-
 
         private void RefreshDataGridView()
         {
-            List<Product> AllProducts = productService.GetAll();
+            IQueryable<Product> AllProducts = productService.GetAll();
             dataGridView1.DataSource = null;
 
-            dataGridView1.DataSource = AllProducts;
+            dataGridView1.DataSource = AllProducts.ToList();
 
         }
-
 
 
         private void CrearTextBoxes()

@@ -24,7 +24,6 @@ namespace Amazon.Models.Models
 
         public Admin Admin { get; set; }
 
-       
         public Category Category { get; set; }
 
        public List<CardItem> CardItems { get; set; }

@@ -17,7 +17,7 @@ namespace Amazon.Applacation.Service
 
         public Category GetById(int id);
 
-        public List<Category> GetAll();
+        public IQueryable<Category> GetAll();
 
 
 

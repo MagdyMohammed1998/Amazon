@@ -39,7 +39,7 @@ namespace Amazon.Applacation.Service
             }
         }
 
-        public List<Category> GetAll()
+        public IQueryable<Category> GetAll()
         {
             var Data = _categoryRepository.GetALL();
             _categoryRepository.Save();

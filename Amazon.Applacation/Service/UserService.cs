@@ -11,43 +11,57 @@ namespace Amazon.Applacation.Service
     public class UserService : IUserService
     {
         IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        IAdminRepository _adminRepository;
+        public UserService(IUserRepository userRepository, IAdminRepository adminRepository)
         {
             _userRepository = userRepository;
+            _adminRepository = adminRepository;
         }
 
-
-        public List<User> GetAllUsers()
+        public IQueryable<User> GetAllUsers()
         {
-            return _userRepository.GetALL();
+            return _userRepository.GetAllUsers();
         }
 
         public User GetUserById(int id)
         {
-            return _userRepository.GetById(id);
+            return _userRepository.GetUserById(id);
         }
 
         public User AddUser(User user)
         {
-            var userRepostry = _userRepository.Add(user);
-            _userRepository.Save();
-            return userRepostry;
+            user.Email = user.Email.ToLower();
+            if (ValidUniqueEmail(user.Email) &&
+              _adminRepository.ValidUniqueEmailAdmin(user.Email)){
+         
+                
+                var userRepostry = _userRepository.AddUser(user);
+                _userRepository.Save();
+                return userRepostry;
+
+            }
+            else
+            {
+                //throw new Exception("This Email is Already Exist !");
+                return null;
+            }
+
         }
 
-        public User UpdateUser(User user)
+        public bool ValidUniqueEmail(string email)
         {
-            var userRepostry = _userRepository.Update(user);
-            _userRepository.Save();
-            return userRepostry;
+            if(email is not null) {
+                return _userRepository.ValidUniqueEmail(email);
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void DeleteUser(User user)
+        public int Save()
         {
-            _userRepository.Delete(user);
-            _userRepository.Save();
+            return _userRepository.Save();
         }
-
-
-
     }
 }

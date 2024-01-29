@@ -87,7 +87,7 @@ namespace Amazon.Presentation
         // getall category
         private void button4_Click(object sender, EventArgs e)
         {
-            List<Category> categories = categoryService.GetAll();
+            IQueryable<Category> categories = categoryService.GetAll();
             dataGridView1.DataSource = categories;
 
         }
@@ -99,11 +99,11 @@ namespace Amazon.Presentation
 
         private void RefreshDataGridView()
         {
-            List<Category> Categories = categoryService.GetAll();
+            IQueryable<Category> Categories = categoryService.GetAll();
 
             dataGridView1.DataSource = null;
 
-            dataGridView1.DataSource = Categories;
+            dataGridView1.DataSource = Categories.ToList();
 
         }
 

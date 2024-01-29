@@ -17,7 +17,7 @@ namespace Amazon.Applacation.Service
 
         public Product GetById(int id);
 
-        public List<Product> GetAll();
+        public IQueryable<Product> GetAll();
 
 
         public List<Product> SearchByName(string name);
