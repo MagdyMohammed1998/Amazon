@@ -45,9 +45,8 @@ namespace Amazon.Applacation.Service
         {
             _userRepository.Delete(user);
             _userRepository.Save();
+
         }
-
-
 
     }
 }
