@@ -29,6 +29,7 @@ namespace Amazon.Presentation
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -55,35 +56,38 @@ namespace Amazon.Presentation
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(0, 192, 0);
             button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(39, 598);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 4;
             button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
+            button2.BackColor = Color.Red;
             button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.Location = new Point(158, 598);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 6;
             button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
+            button3.BackColor = Color.Yellow;
             button3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.Location = new Point(281, 598);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 7;
             button3.Text = "Update";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // label3
@@ -98,13 +102,14 @@ namespace Amazon.Presentation
             // 
             // button4
             // 
+            button4.BackColor = Color.Blue;
             button4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button4.Location = new Point(415, 598);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 11;
             button4.Text = "GetAll";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // button7
@@ -208,13 +213,14 @@ namespace Amazon.Presentation
             // 
             // Search
             // 
+            Search.BackColor = Color.White;
             Search.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Search.Location = new Point(773, 598);
             Search.Name = "Search";
             Search.Size = new Size(70, 23);
             Search.TabIndex = 27;
             Search.Text = "Search";
-            Search.UseVisualStyleBackColor = true;
+            Search.UseVisualStyleBackColor = false;
             Search.Click += Search_Click;
             // 
             // comboBox1
@@ -228,7 +234,8 @@ namespace Amazon.Presentation
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.White;
-            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(26, 344);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(252, 161);
@@ -251,7 +258,7 @@ namespace Amazon.Presentation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Lavender;
+            BackColor = Color.Teal;
             ClientSize = new Size(1033, 712);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
