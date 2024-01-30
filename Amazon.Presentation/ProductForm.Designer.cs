@@ -258,7 +258,7 @@ namespace Amazon.Presentation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Teal;
+            BackColor = Color.DarkCyan;
             ClientSize = new Size(1033, 712);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
