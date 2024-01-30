@@ -213,7 +213,7 @@ namespace Amazon.Presentation
             // 
             // Search
             // 
-            Search.BackColor = Color.White;
+            Search.BackColor = Color.IndianRed;
             Search.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Search.Location = new Point(773, 598);
             Search.Name = "Search";
