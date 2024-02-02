@@ -24,6 +24,7 @@ namespace Amazon.Presentation
             productService = new ProductService(new ProductRepository(new AmazonContext()));
 
             dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
+            textBox1.TextChanged += textBox1_TextChanged;
         }
 
         private void UserPage_Load(object sender, EventArgs e)
@@ -76,6 +77,7 @@ namespace Amazon.Presentation
 
         }
 
+        // Search
         private void button1_Click(object sender, EventArgs e)
         {
             string name = textBox1.Text;
@@ -88,9 +90,39 @@ namespace Amazon.Presentation
                 Image = p.Image,
             }).ToList();
 
-           // dataGridView1.DataSource = null;
+            // dataGridView1.DataSource = null;
             dataGridView1.DataSource = filterProductSelect;
             dataGridView1.Columns["Image"].Visible = false;
+        }
+
+
+       
+
+        private void RefreshDataGridView()
+        {
+            IQueryable<Product> allProducts = productService.GetAll();
+
+            var ProductSelect = allProducts.Select(p => new
+            {
+                Name = p.Name,
+                Price = p.Price,
+                Description = p.Description,
+                Image = p.Image,
+
+            });
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = ProductSelect.ToList();
+            dataGridView1.Columns["Image"].Visible = false;
+        }
+
+        // Clear TextBox
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text == string.Empty)
+            {
+                RefreshDataGridView();
+            }
         }
     }
 }

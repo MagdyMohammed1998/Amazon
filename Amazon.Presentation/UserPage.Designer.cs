@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPage));
             dataGridView1 = new DataGridView();
             textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
@@ -35,6 +36,9 @@
             button1 = new Button();
             label2 = new Label();
             label3 = new Label();
+            button2 = new Button();
+            button3 = new Button();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -54,6 +58,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(182, 23);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox1
             // 
@@ -111,12 +116,49 @@
             label3.TabIndex = 6;
             label3.Text = "Description";
             // 
+            // button2
+            // 
+            button2.FlatAppearance.BorderColor = Color.Black;
+            button2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.OrangeRed;
+            button2.Location = new Point(53, 367);
+            button2.Name = "button2";
+            button2.Size = new Size(82, 25);
+            button2.TabIndex = 7;
+            button2.Text = "To Cart";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.FlatAppearance.BorderColor = Color.Black;
+            button3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.FromArgb(0, 192, 0);
+            button3.Location = new Point(222, 367);
+            button3.Name = "button3";
+            button3.Size = new Size(82, 25);
+            button3.TabIndex = 8;
+            button3.Text = "Buy Now";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(18, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(63, 44);
+            panel1.TabIndex = 10;
+            // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
             ClientSize = new Size(800, 450);
+            Controls.Add(panel1);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(button1);
@@ -143,5 +185,8 @@
         private Button button1;
         private Label label2;
         private Label label3;
+        private Button button2;
+        private Button button3;
+        private Panel panel1;
     }
 }

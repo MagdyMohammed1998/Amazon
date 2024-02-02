@@ -82,6 +82,11 @@ namespace Amazon.Applacation.Service
             return Data;
         }
 
-       
+        public IQueryable<Product> GetProductsByQuantity(int quantity)
+        {
+            var Data = _productRepository.GetProductsByQuantity(quantity);
+            _productRepository.Save();
+            return Data;
+        }
     }
 }

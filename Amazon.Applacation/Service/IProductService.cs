@@ -22,5 +22,8 @@ namespace Amazon.Applacation.Service
 
         public IQueryable <Product> SearchByName(string name);
 
+
+       public IQueryable<Product> GetProductsByQuantity(int quantity);
+
     }
 }
