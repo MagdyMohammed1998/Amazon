@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Amazon.Applacation.Contract
 {
-    public interface IAdminRepository : Irepository<Admin,int>
+    public interface IAdminRepository 
     {
-
-
+        public bool ValidUniqueEmailAdmin(string email);
+        public bool GetAdminEmailAndPassword(string email, string password);
     }
 }

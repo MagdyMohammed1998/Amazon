@@ -1,13 +1,17 @@
-﻿using Amazon.Models.Models;
+﻿using Amazon.Applacation.Contract;
+using Amazon.Models.Models;
 
 namespace Amazon.Applacation.Service
 {
-    public interface IUserService
+    public interface IUserService:IUserRepository
     {
+
+        
         User AddUser(User user);
         void DeleteUser(User user);
         IQueryable<User> GetAllUsers();
         User GetUserById(int id);
         User UpdateUser(User user);
+
     }
 }

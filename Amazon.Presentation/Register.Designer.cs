@@ -28,161 +28,190 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registration));
-            button1 = new Button();
+            RegisterBtn = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
+            NameText = new TextBox();
+            EmailText = new TextBox();
+            PasswordText = new TextBox();
+            NameLabel = new Label();
+            EmailLabel = new Label();
+            PasswordLabel = new Label();
+            NameValid = new Label();
+            EmailValid = new Label();
+            PasswordValid = new Label();
             SuspendLayout();
             // 
-            // button1
+            // RegisterBtn
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(336, 368);
-            button1.Margin = new Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(97, 29);
-            button1.TabIndex = 0;
-            button1.Text = "Register";
-            button1.UseVisualStyleBackColor = false;
+            RegisterBtn.BackColor = Color.Transparent;
+            RegisterBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            RegisterBtn.FlatStyle = FlatStyle.Flat;
+            RegisterBtn.Font = new Font("Goudy Old Style", 18F, FontStyle.Italic);
+            RegisterBtn.ForeColor = SystemColors.ButtonHighlight;
+            RegisterBtn.Location = new Point(459, 325);
+            RegisterBtn.Margin = new Padding(4, 3, 4, 3);
+            RegisterBtn.Name = "RegisterBtn";
+            RegisterBtn.Size = new Size(129, 55);
+            RegisterBtn.TabIndex = 0;
+            RegisterBtn.Text = "Register";
+            RegisterBtn.UseVisualStyleBackColor = false;
+            RegisterBtn.Click += button1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.FlatStyle = FlatStyle.Flat;
-            label1.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(313, 11);
+            label1.Font = new Font("Goudy Old Style", 18F, FontStyle.Italic);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(459, 28);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(159, 31);
+            label1.Size = new Size(114, 26);
             label1.TabIndex = 1;
             label1.Text = "Registration";
             // 
-            // textBox1
+            // NameText
             // 
-            textBox1.Location = new Point(288, 108);
-            textBox1.Margin = new Padding(4, 3, 4, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(198, 26);
-            textBox1.TabIndex = 2;
+            NameText.Location = new Point(435, 115);
+            NameText.Margin = new Padding(4, 3, 4, 3);
+            NameText.Name = "NameText";
+            NameText.Size = new Size(198, 26);
+            NameText.TabIndex = 2;
+            NameText.TextChanged += NameText_TextChanged;
             // 
-            // textBox2
+            // EmailText
             // 
-            textBox2.Location = new Point(288, 174);
-            textBox2.Margin = new Padding(4, 3, 4, 3);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(198, 26);
-            textBox2.TabIndex = 3;
+            EmailText.Location = new Point(435, 174);
+            EmailText.Margin = new Padding(4, 3, 4, 3);
+            EmailText.Name = "EmailText";
+            EmailText.Size = new Size(198, 26);
+            EmailText.TabIndex = 3;
+            EmailText.TextChanged += EmailText_TextChanged;
             // 
-            // textBox3
+            // PasswordText
             // 
-            textBox3.Location = new Point(288, 238);
-            textBox3.Margin = new Padding(4, 3, 4, 3);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(198, 26);
-            textBox3.TabIndex = 4;
+            PasswordText.Location = new Point(435, 228);
+            PasswordText.Margin = new Padding(4, 3, 4, 3);
+            PasswordText.Name = "PasswordText";
+            PasswordText.Size = new Size(198, 26);
+            PasswordText.TabIndex = 4;
+            PasswordText.TextChanged += PasswordText_TextChanged;
             // 
-            // textBox4
+            // NameLabel
             // 
-            textBox4.Location = new Point(288, 294);
-            textBox4.Margin = new Padding(4, 3, 4, 3);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(198, 26);
-            textBox4.TabIndex = 5;
+            NameLabel.AutoSize = true;
+            NameLabel.BackColor = Color.Transparent;
+            NameLabel.Font = new Font("Goudy Old Style", 18F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            NameLabel.ForeColor = SystemColors.ButtonHighlight;
+            NameLabel.Location = new Point(218, 115);
+            NameLabel.Margin = new Padding(4, 0, 4, 0);
+            NameLabel.Name = "NameLabel";
+            NameLabel.Size = new Size(70, 26);
+            NameLabel.TabIndex = 6;
+            NameLabel.Text = "Name:";
             // 
-            // label2
+            // EmailLabel
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(115, 108);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(79, 26);
-            label2.TabIndex = 6;
-            label2.Text = "Name:";
+            EmailLabel.AutoSize = true;
+            EmailLabel.BackColor = Color.Transparent;
+            EmailLabel.Font = new Font("Goudy Old Style", 18F, FontStyle.Italic);
+            EmailLabel.ForeColor = SystemColors.ButtonHighlight;
+            EmailLabel.Location = new Point(218, 174);
+            EmailLabel.Margin = new Padding(4, 0, 4, 0);
+            EmailLabel.Name = "EmailLabel";
+            EmailLabel.Size = new Size(70, 26);
+            EmailLabel.TabIndex = 7;
+            EmailLabel.Text = "Email:";
             // 
-            // label3
+            // PasswordLabel
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(115, 174);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(81, 26);
-            label3.TabIndex = 7;
-            label3.Text = "Email:";
+            PasswordLabel.AutoSize = true;
+            PasswordLabel.BackColor = Color.Transparent;
+            PasswordLabel.Font = new Font("Goudy Old Style", 18F, FontStyle.Italic);
+            PasswordLabel.ForeColor = SystemColors.ButtonHighlight;
+            PasswordLabel.Location = new Point(184, 228);
+            PasswordLabel.Margin = new Padding(4, 0, 4, 0);
+            PasswordLabel.Name = "PasswordLabel";
+            PasswordLabel.Size = new Size(97, 26);
+            PasswordLabel.TabIndex = 8;
+            PasswordLabel.Text = "Password:";
             // 
-            // label4
+            // NameValid
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(78, 238);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(118, 26);
-            label4.TabIndex = 8;
-            label4.Text = "Password:";
+            NameValid.AutoSize = true;
+            NameValid.BackColor = Color.Transparent;
+            NameValid.Font = new Font("Goudy Old Style", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            NameValid.ForeColor = Color.Red;
+            NameValid.Location = new Point(699, 115);
+            NameValid.Name = "NameValid";
+            NameValid.Size = new Size(128, 22);
+            NameValid.TabIndex = 12;
+            NameValid.Text = "Name Not Valid";
             // 
-            // label5
+            // EmailValid
             // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(40, 294);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(154, 26);
-            label5.TabIndex = 9;
-            label5.Text = "Re-Password:";
+            EmailValid.AutoSize = true;
+            EmailValid.BackColor = Color.Transparent;
+            EmailValid.Font = new Font("Goudy Old Style", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            EmailValid.ForeColor = Color.Red;
+            EmailValid.Location = new Point(699, 174);
+            EmailValid.Name = "EmailValid";
+            EmailValid.Size = new Size(127, 22);
+            EmailValid.TabIndex = 13;
+            EmailValid.Text = "Email Not Valid";
+            // 
+            // PasswordValid
+            // 
+            PasswordValid.AutoSize = true;
+            PasswordValid.BackColor = Color.Transparent;
+            PasswordValid.Font = new Font("Goudy Old Style", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            PasswordValid.ForeColor = Color.Red;
+            PasswordValid.Location = new Point(699, 228);
+            PasswordValid.Name = "PasswordValid";
+            PasswordValid.Size = new Size(150, 22);
+            PasswordValid.TabIndex = 14;
+            PasswordValid.Text = "Password Not Valid";
             // 
             // Registration
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackColor = SystemColors.ActiveCaptionText;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(771, 409);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            ClientSize = new Size(1006, 465);
+            Controls.Add(PasswordValid);
+            Controls.Add(EmailValid);
+            Controls.Add(NameValid);
+            Controls.Add(PasswordLabel);
+            Controls.Add(EmailLabel);
+            Controls.Add(NameLabel);
+            Controls.Add(PasswordText);
+            Controls.Add(EmailText);
+            Controls.Add(NameText);
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(RegisterBtn);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
             Name = "Registration";
             Text = "Registration";
+            Load += Registration_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Button RegisterBtn;
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
+        private TextBox NameText;
+        private TextBox EmailText;
+        private TextBox PasswordText;
+        private Label NameLabel;
+        private Label EmailLabel;
+        private Label PasswordLabel;
+        private Label NameValid;
+        private Label EmailValid;
+        private Label PasswordValid;
     }
 }

@@ -8,7 +8,7 @@ namespace Amazon.Models.Models
 {
     public class User
     {
-          public int Id { get; set; }
+      public int Id { get; set; }
 
       public string Name { get; set; }
 
@@ -17,9 +17,13 @@ namespace Amazon.Models.Models
       public string Password { get; set; }
 
 
-     public Card Card { get; set; }
+      public Card Card { get; set; }
 
-     public List<Order> Orders { get; set; }
+      public List<Order> Orders { get; set; }
+
+
+    
+
 
     }
 }

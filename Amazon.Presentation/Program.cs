@@ -12,9 +12,9 @@ namespace Amazon.Presentation
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new UserPage());
+            //Application.Run(new UserPage());
 
-            //Application.Run(new Registration());
+            Application.Run(new UserLogin());
 
             //Application.Run(new ProductForm());
 

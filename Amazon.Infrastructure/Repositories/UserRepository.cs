@@ -10,12 +10,50 @@ using System.Threading.Tasks;
 
 namespace Amazon.Infrastructure.Repositories
 {
-    public class UserRepository:Repository<User,int>,IUserRepository
+    public class UserRepository:IUserRepository
     {
-        public UserRepository(AmazonContext amazonContext):base(amazonContext)
+        AmazonContext _Context;
+        DbSet<User> SetEntity;
+
+        public UserRepository(AmazonContext amazonContext)
         { 
-           
+           _Context = amazonContext;
+           SetEntity = amazonContext.Set<User>();
         }
-  
+
+        public User AddUser(User entity)
+        {
+            return SetEntity.Add(entity).Entity;
+        }
+
+        public IQueryable<User> GetAllUsers()
+        {
+            return SetEntity;
+        }
+
+        public User GetUserById(int id)
+        {
+            return SetEntity.Find(id);
+        }
+
+        public int Save()
+        {
+            return _Context.SaveChanges();
+        }
+
+        public bool ValidUniqueEmail(string email)
+        {
+            return !_Context.Users.Any(user => user.Email == email);
+        }
+
+        public bool GetUserEmailAndPassword(string email, string password)
+        {
+            return _Context.Users.Any(user => user.Email == email && user.Password == password);
+        }
+
+        public void Delete(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
