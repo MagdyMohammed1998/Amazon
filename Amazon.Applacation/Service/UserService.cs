@@ -45,7 +45,6 @@ namespace Amazon.Applacation.Service
                 //throw new Exception("This Email is Already Exist !");
                 return null;
             }
-
         }
 
         public bool ValidUniqueEmail(string email)
@@ -57,6 +56,11 @@ namespace Amazon.Applacation.Service
             {
                 return false;
             }
+        }
+
+        public bool GetUserEmailAndPassword(string email, string password)
+        {
+            return _userRepository.GetUserEmailAndPassword(email.ToLower(), password);
         }
 
         public int Save()

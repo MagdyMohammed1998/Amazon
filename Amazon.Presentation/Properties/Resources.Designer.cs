@@ -97,6 +97,18 @@ namespace Amazon.Presentation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cosmetic_background_for_product_branding_and_packaging_presentation_geometry_form_circle_molding_on_podium_stage_with_shadow_of_leaf_background_design_eps10_vector2 {
+            get {
+                object obj = ResourceManager.GetObject("cosmetic-background-for-product-branding-and-packaging-presentation-geometry-form" +
+                        "-circle-molding-on-podium-stage-with-shadow-of-leaf-background-design-eps10-vect" +
+                        "or2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap theme_preview {
             get {
                 object obj = ResourceManager.GetObject("theme-preview", resourceCulture);

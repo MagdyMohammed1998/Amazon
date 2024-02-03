@@ -15,5 +15,6 @@ namespace Amazon.Applacation.Contract
         User AddUser(User entity);
         bool ValidUniqueEmail(string email);
         int Save();
+        bool GetUserEmailAndPassword(string email,string password);
     }
 }

@@ -13,7 +13,7 @@ namespace Amazon.Presentation
             ApplicationConfiguration.Initialize();
             //Application.Run(new UserLogin());
 
-            Application.Run(new Registration());
+            Application.Run(new UserLogin());
 
             //Application.Run(new ProductForm());
 

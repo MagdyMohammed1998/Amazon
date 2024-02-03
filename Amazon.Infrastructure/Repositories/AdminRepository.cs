@@ -17,9 +17,15 @@ namespace Amazon.Infrastructure.Repositories
             _Context = context;
         }
 
+
         public bool ValidUniqueEmailAdmin(string email)
         {
             return !_Context.Admins.Any(admin => admin.Email == email);
+        }
+
+        public bool GetAdminEmailAndPassword(string email, string password)
+        {
+            return _Context.Admins.Any(admin=>admin.Email == email && admin.Password == password);
         }
     }
 }

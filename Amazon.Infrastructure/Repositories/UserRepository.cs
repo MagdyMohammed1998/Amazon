@@ -14,6 +14,7 @@ namespace Amazon.Infrastructure.Repositories
     {
         AmazonContext _Context;
         DbSet<User> SetEntity;
+
         public UserRepository(AmazonContext amazonContext)
         { 
            _Context = amazonContext;
@@ -43,6 +44,11 @@ namespace Amazon.Infrastructure.Repositories
         public bool ValidUniqueEmail(string email)
         {
             return !_Context.Users.Any(user => user.Email == email);
+        }
+
+        public bool GetUserEmailAndPassword(string email, string password)
+        {
+            return _Context.Users.Any(user => user.Email == email && user.Password == password);
         }
     }
 }

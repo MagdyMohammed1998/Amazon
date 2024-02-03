@@ -10,6 +10,6 @@ namespace Amazon.Applacation.Contract
     public interface IAdminRepository 
     {
         public bool ValidUniqueEmailAdmin(string email);
-
+        public bool GetAdminEmailAndPassword(string email, string password);
     }
 }
