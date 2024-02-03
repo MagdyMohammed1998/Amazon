@@ -18,9 +18,9 @@ namespace Amazon.Context
 
         public virtual DbSet<Category> Categories { get; set; }
 
-        public virtual DbSet<Card> Cards { get; set; }
+        public virtual DbSet<Cart> Cards { get; set; }
 
-        public virtual DbSet<CardItem> CardItems { get; set; }
+        public virtual DbSet<CartDetails> CartDetails { get; set; }
 
         public virtual DbSet<Order> Orders { get; set; }
 
@@ -48,40 +48,41 @@ namespace Amazon.Context
                 .HasForeignKey(p => p.AdminID)
                 .OnDelete(DeleteBehavior.Restrict);
 
+
             modelBuilder.Entity<OrderDetails>()
                 .HasOne(od => od.Order)
-                .WithMany(o => o.Details)
-                .HasForeignKey(od => od.OrderID)
+                .WithMany(o => o.OrderDetail)
+                .HasForeignKey(od => od.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<OrderDetails>()
                 .HasOne(od => od.Product)
                 .WithMany(p => p.OrderDetails)
-                .HasForeignKey(od => od.ProductID)
+                .HasForeignKey(od => od.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Order>()
-                .HasOne(o => o.User)
-                .WithMany(u => u.Orders)
-                .HasForeignKey(o => o.UsertID)
-                .OnDelete(DeleteBehavior.Restrict);
+                 .HasOne(o => o.User)
+                 .WithMany(u => u.Orders)
+                 .HasForeignKey(o => o.UserId)
+                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CardItem>()
-                .HasOne(ci => ci.card)
-                .WithMany(c => c.cardItems)
-                .HasForeignKey(ci => ci.CardID)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<CartDetails>()
+                 .HasOne(ci => ci.Cart)
+                 .WithMany(c => c.CartDetail)
+                 .HasForeignKey(ci => ci.CartId)
+                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<CardItem>()
-                .HasOne(ci => ci.product)
+            modelBuilder.Entity<CartDetails>()
+                .HasOne(ci => ci.Product)
                 .WithMany(p => p.CardItems)
-                .HasForeignKey(ci => ci.ProductID)
+                .HasForeignKey(ci => ci.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Card>()
+            modelBuilder.Entity<Cart>()
                 .HasOne(c => c.User)
                 .WithOne(u => u.Card)
-                .HasForeignKey <Card>(u => u.UserID)
+                .HasForeignKey<Cart>(u => u.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Category>()

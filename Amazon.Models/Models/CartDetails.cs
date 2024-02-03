@@ -7,18 +7,23 @@ using System.Threading.Tasks;
 
 namespace Amazon.Models.Models
 {
-    public class OrderDetails
+    public class CartDetails
     {
         public int Id { get; set; }
-        public decimal Price { get; set; }
+
         public int Quantity { get; set; }
-        // Relations
-        [ForeignKey("Order")]
-        public int OrderId { get; set; }
-        [ForeignKey("Product")]
+
+        // Foreign key property
         public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Order Order { get; set; }
+        [ForeignKey("Cart")]
+        public int CartId { get; set; }
+
+        // Navigation properties
+        [ForeignKey("ProductId")]
+        public Product? Product { get; set; }
+
+
+        public Cart? Cart { get; set; }
 
     }
 }

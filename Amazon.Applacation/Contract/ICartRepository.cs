@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Amazon.Applacation.Contract
 {
-    public interface ICardItemRepository : Irepository<CardItem ,int>
+    public interface ICartRepository : Irepository<Cart, int>
     {
 
-
+        Cart GetCartByUserEmail(string Email);
+        Cart GetCartByUserId(int userId);
     }
 }
