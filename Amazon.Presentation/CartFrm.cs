@@ -23,9 +23,9 @@ namespace Amazon
         IProductService productService = new ProductService(new ProductRepository(new AmazonContext()));
         ICartService CartService = new CartService(new CartRepository(new AmazonContext()));
         ICartDetailsService CartDetailsService = new CartDetailsService(new CartDetailsRepository(new AmazonContext()), new ProductRepository(new AmazonContext()));
-        IUserService UserService = new UserService(new UserRepository(new AmazonContext()),new AdminRepository(new AmazonContext()));
+        IUserService UserService = new UserService(new UserRepository(new AmazonContext()), new AdminRepository(new AmazonContext()));
         IOrderDetailsService orderDetailsService = new OrderDetailsService(new OrderDetailsRepository(new AmazonContext()), new CartDetailsRepository(new AmazonContext()), new ProductRepository(new AmazonContext()));
-       IOrderService orderService = new OrderService(new OrderRepository(new AmazonContext()));
+        IOrderService orderService = new OrderService(new OrderRepository(new AmazonContext()));
         AmazonContext _Context = new AmazonContext();
 
 
@@ -70,7 +70,7 @@ namespace Amazon
 
         private void LoginForm_UserLoggedIn(object sender, string userEmail)
         {
-            
+
             UserName.Text = userEmail;
         }
         private void LoadDataGrid()
@@ -175,47 +175,47 @@ namespace Amazon
             cartQuantatiy.Text = "";
         }
 
-       private void OrderNow_Click(object sender, EventArgs e)
+        private void OrderNow_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 List<CartDetails> selectedCartDetails = new List<CartDetails>();
-        
+
                 foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 {
                     string productName = row.Cells["ProductName"].Value?.ToString();
                     int quantity = int.Parse(row.Cells["Quantity"].Value?.ToString() ?? "0");
-        
+
                     if (!string.IsNullOrEmpty(productName) && quantity > 0)
                     {
                         selectedCartDetails.Add(new CartDetails
                         {
-          
+
                             ProductId = productService.GetProductByName(productName),
                             Quantity = quantity
                         });
                     }
                 }
-        
+
                 if (selectedCartDetails.Any())
                 {
                     User existingUser = UserService.GetUserByEmail(UserName.Text);
-        
-                            Order order = new Order
-                            {
-                                OrderDate = DateTime.Now,
-                                UserId = existingUser.Id,
-                                StateOrder = StateOrder.Processing
-                            };
-        
-                            orderService.Add(order);
-                            foreach (CartDetails cartDetails in selectedCartDetails)
-                            {
-                           OrderDetails orderDetails = orderDetailsService.AddFromCartDetails(cartDetails, order);
+
+                    Order order = new Order
+                    {
+                        OrderDate = DateTime.Now,
+                        UserId = existingUser.Id,
+                        StateOrder = StateOrder.Processing
+                    };
+
+                    orderService.Add(order);
+                    foreach (CartDetails cartDetails in selectedCartDetails)
+                    {
+                        OrderDetails orderDetails = orderDetailsService.AddFromCartDetails(cartDetails, order);
                         CartDetailsService.Delete(productService.GetById(cartDetails.ProductId).Name);
 
-                              }
-        
+                    }
+
                     MessageBox.Show("Order placed successfully!");
                     LoadDataGrid();
                 }
@@ -229,7 +229,6 @@ namespace Amazon
                 MessageBox.Show("Please select products to order.");
             }
         }
-        
-            }
-        }
-        
+
+    }
+}      //}

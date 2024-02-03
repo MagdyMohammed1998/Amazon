@@ -47,7 +47,7 @@ namespace Amazon.Context.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("Amazon.Models.Models.Card", b =>
+            modelBuilder.Entity("Amazon.Models.Models.Cart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,21 +55,19 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("UserID")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Cards");
                 });
 
-            modelBuilder.Entity("Amazon.Models.Models.CardItem", b =>
+            modelBuilder.Entity("Amazon.Models.Models.CartDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,10 +75,10 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CardID")
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -88,11 +86,11 @@ namespace Amazon.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CardID");
+                    b.HasIndex("CartId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("CardItems");
+                    b.ToTable("CartDetails");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Category", b =>
@@ -119,28 +117,24 @@ namespace Amazon.Context.Migrations
 
             modelBuilder.Entity("Amazon.Models.Models.Order", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UsertID")
+                    b.Property<int>("StateOrder")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("UsertID");
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -153,10 +147,13 @@ namespace Amazon.Context.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductID")
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -164,9 +161,9 @@ namespace Amazon.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -190,7 +187,6 @@ namespace Amazon.Context.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -237,34 +233,33 @@ namespace Amazon.Context.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Amazon.Models.Models.Card", b =>
+            modelBuilder.Entity("Amazon.Models.Models.Cart", b =>
                 {
                     b.HasOne("Amazon.Models.Models.User", "User")
                         .WithOne("Card")
-                        .HasForeignKey("Amazon.Models.Models.Card", "UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Amazon.Models.Models.Cart", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Amazon.Models.Models.CardItem", b =>
+            modelBuilder.Entity("Amazon.Models.Models.CartDetails", b =>
                 {
-                    b.HasOne("Amazon.Models.Models.Card", "card")
-                        .WithMany("cardItems")
-                        .HasForeignKey("CardID")
+                    b.HasOne("Amazon.Models.Models.Cart", "Cart")
+                        .WithMany("CartDetail")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Amazon.Models.Models.Product", "product")
+                    b.HasOne("Amazon.Models.Models.Product", "Product")
                         .WithMany("CardItems")
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("card");
+                    b.Navigation("Cart");
 
-                    b.Navigation("product");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Category", b =>
@@ -281,7 +276,7 @@ namespace Amazon.Context.Migrations
                 {
                     b.HasOne("Amazon.Models.Models.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UsertID")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -291,14 +286,14 @@ namespace Amazon.Context.Migrations
             modelBuilder.Entity("Amazon.Models.Models.OrderDetails", b =>
                 {
                     b.HasOne("Amazon.Models.Models.Order", "Order")
-                        .WithMany("Details")
-                        .HasForeignKey("OrderID")
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Amazon.Models.Models.Product", "Product")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -331,9 +326,9 @@ namespace Amazon.Context.Migrations
                     b.Navigation("products");
                 });
 
-            modelBuilder.Entity("Amazon.Models.Models.Card", b =>
+            modelBuilder.Entity("Amazon.Models.Models.Cart", b =>
                 {
-                    b.Navigation("cardItems");
+                    b.Navigation("CartDetail");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Category", b =>
@@ -343,7 +338,7 @@ namespace Amazon.Context.Migrations
 
             modelBuilder.Entity("Amazon.Models.Models.Order", b =>
                 {
-                    b.Navigation("Details");
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("Amazon.Models.Models.Product", b =>
