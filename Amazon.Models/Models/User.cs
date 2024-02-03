@@ -17,9 +17,9 @@ namespace Amazon.Models.Models
       public string Password { get; set; }
 
 
-      public Card Card { get; set; }
+      public Cart Card { get; set; }
 
-      public List<Order> Orders { get; set; }
+      public IQueryable<Order> Orders { get; set; }
 
 
     

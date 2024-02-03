@@ -26,8 +26,8 @@ namespace Amazon.Models.Models
         public int? CategoryID { get; set; }
         public Category category { get; set; }
 
-       public List<CardItem> CardItems { get; set; }
+       public IQueryable<CartDetails> CardItems { get; set; }
 
-       public List<OrderDetails> OrderDetails { get; set; }
+       public IQueryable<OrderDetails> OrderDetails { get; set; }
     }
 }

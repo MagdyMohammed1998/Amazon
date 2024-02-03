@@ -1,4 +1,5 @@
 ﻿using Amazon.Models.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Amazon.Applacation.Contract
 {
-    public interface ICardRepository : Irepository<Card, int>
+    public interface ICartDetailsRepository : Irepository<CartDetails, int>
     {
+        IQueryable<CartDetails> GetAllByCartId(int CartId);
+        CartDetails GetCartDetailsBy(int ProductId);
 
 
     }

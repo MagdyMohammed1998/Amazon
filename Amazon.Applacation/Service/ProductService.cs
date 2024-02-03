@@ -3,6 +3,7 @@ using Amazon.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,6 +88,13 @@ namespace Amazon.Applacation.Service
             var Data = _productRepository.GetProductsByQuantity(quantity);
             _productRepository.Save();
             return Data;
+        }
+        public Product GetProductByName(string Name)
+        {
+            if (Name != null)
+                return _productRepository.GetProductByName(Name);
+            else
+                throw new Exception("Name OF Product Not found");
         }
     }
 }

@@ -27,5 +27,12 @@ namespace Amazon.Infrastructure.Repositories
         {
             return _Context.Admins.Any(admin=>admin.Email == email && admin.Password == password);
         }
+
+        public Admin GetAdminByEmail(string email)
+        {
+           
+                return _Context.Admins.FirstOrDefault(a => a.Email == email);
+          
+        }
     }
 }

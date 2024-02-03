@@ -16,6 +16,12 @@ namespace Amazon.Applacation.Service
             _adminRepository = adminRepository;
         }
 
+        public Admin GetAdminByEmail(string email)
+        {
+            if(email == null) throw new ArgumentNullException("email"); 
+          return _adminRepository.GetAdminByEmail(email);
+        }
+
         public bool GetAdminEmailAndPassword(string email, string password)
         {
             return _adminRepository.GetAdminEmailAndPassword(email.ToLower(), password);

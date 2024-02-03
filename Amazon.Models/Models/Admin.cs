@@ -15,9 +15,9 @@ namespace Amazon.Models.Models
 
         public string Password { get; set; }
 
-       public List<Product> products { get; set; }
+       public IQueryable<Product> products { get; set; }
 
-       public List<Category> categories { get; set; }
+       public IQueryable<Category> categories { get; set; }
 
     }
 }

@@ -11,5 +11,6 @@ namespace Amazon.Applacation.Contract
     {
         public bool ValidUniqueEmailAdmin(string email);
         public bool GetAdminEmailAndPassword(string email, string password);
+        public Admin GetAdminByEmail(string email);
     }
 }

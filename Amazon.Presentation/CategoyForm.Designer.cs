@@ -171,6 +171,7 @@
             Controls.Add(dataGridView1);
             Name = "CategoyForm";
             Text = "CategoyForm";
+            Load += CategoyForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

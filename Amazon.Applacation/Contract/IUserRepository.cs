@@ -17,6 +17,8 @@ namespace Amazon.Applacation.Contract
         int Save();
         bool GetUserEmailAndPassword(string email,string password);
         void Delete(User user);
+        User GetUserByEmail(string Email);
+
 
     }
 }

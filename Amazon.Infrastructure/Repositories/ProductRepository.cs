@@ -18,6 +18,12 @@ namespace Amazon.Infrastructure.Repositories
             _Context = context;
         }
 
+        public Product GetProductByName(string name)
+        {
+            return _Context.Products.FirstOrDefault(p => p.Name == name);
+
+        }
+
         public IQueryable<Product> GetProductsByQuantity(int quantity)
         {
             return _Context.Products.Where(p => p.Quantity == quantity);

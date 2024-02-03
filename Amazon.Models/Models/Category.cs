@@ -16,7 +16,7 @@ namespace Amazon.Models.Models
 
         public Admin Admin { get; set; }
 
-      public  List<Product> products { get; set; }
+      public  IQueryable<Product> products { get; set; }
 
     }
 }

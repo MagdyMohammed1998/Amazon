@@ -89,6 +89,19 @@ namespace Amazon.Applacation.Service
         {
             throw new NotImplementedException();
         }
+
+        public User GetUserByEmail(string Email)
+        {
+            var res = _userRepository.GetUserByEmail(Email);
+            if (res is not null)
+            {
+                return res;
+            }
+            else
+            {
+                throw new Exception("User Not Found");
+            }
+        }
     }
 
 
