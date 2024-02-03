@@ -98,7 +98,7 @@
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.Click += dataGridView1_Click;
             dataGridView1.MouseClick += dataGridView1_MouseClick;
-            // 
+
             // label3
             // 
             label3.AutoSize = true;
@@ -249,7 +249,7 @@
             OrderNow.Text = "Order Now";
             OrderNow.UseVisualStyleBackColor = false;
             OrderNow.Click += OrderNow_Click;
-            // 
+
             // CartFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
