@@ -26,14 +26,15 @@ namespace Amazon.Presentation
             string password = PasworddText.Text;
             if (_adminService.GetAdminEmailAndPassword(email, password))
             {
-                ProductForm productForm = new ProductForm();
-                productForm.Show();
+               
+                adminPanle adminPanle = new adminPanle();
+                adminPanle.Show();
                 this.Hide();
             }
             else if (_userService.GetUserEmailAndPassword(email, password))
             {
-                CategoyForm categoyForm = new CategoyForm();
-                categoyForm.Show();
+                UserPage userPage = new UserPage();
+                userPage.Show();
                 this.Hide();
             }
             else
