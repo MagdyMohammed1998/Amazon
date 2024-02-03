@@ -28,21 +28,21 @@ namespace Amazon.Presentation
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
         }
 
-         private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
-                var category = (Category)selectedRow.DataBoundItem;
+                
+                TextBox1.Text = selectedRow.Cells["Name"].Value.ToString();
 
-                CategoryNameText.Text = category.Name;
             }
         }
 
         // add category
         private void button1_Click(object sender, EventArgs e)
         {
-            string name = CategoryNameText.Text;
+            string name = TextBox1.Text;
 
             var existingCatgory = categoryService.GetAll().FirstOrDefault(p => p.Name == name);
             if (existingCatgory != null)
@@ -71,7 +71,7 @@ namespace Amazon.Presentation
             int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
             Category categoryToDelete = categoryService.GetById(CategoryId);
-            if (categoryToDelete != null) 
+            if (categoryToDelete != null)
             {
                 categoryService.Delete(categoryToDelete);
 
@@ -96,9 +96,9 @@ namespace Amazon.Presentation
 
             Category CategoryToUpdate = categoryService.GetById(CategoryId);
 
-            if(CategoryToUpdate != null)
+            if (CategoryToUpdate != null)
             {
-                string NewCategory = CategoryNameText.Text;
+                string NewCategory = TextBox1.Text;
 
                 CategoryToUpdate.Name = NewCategory;
 
@@ -123,8 +123,15 @@ namespace Amazon.Presentation
         // getall category
         private void button4_Click(object sender, EventArgs e)
         {
-            IQueryable <Category> categories = categoryService.GetAll();
-            dataGridView1.DataSource = categories.ToList();
+            var categories = categoryService.GetAll();
+            var SelectedCategory = categories.Select(c => new
+            {
+                Id = c.Id,
+                Name = c.Name,
+
+            }).ToList();
+
+            dataGridView1.DataSource = SelectedCategory;
 
         }
 
@@ -135,7 +142,7 @@ namespace Amazon.Presentation
 
         private void RefreshDataGridView()
         {
-            IQueryable <Category> Categories = categoryService.GetAll();
+            IQueryable<Category> Categories = categoryService.GetAll();
 
             dataGridView1.DataSource = null;
 
@@ -151,16 +158,23 @@ namespace Amazon.Presentation
 
         private void CrearTextBoxes()
         {
-            
-            CategoryNameText.Text = string.Empty;
+
+            TextBox1.Text = string.Empty;
         }
 
         private void Search_Click(object sender, EventArgs e)
         {
             string name = texSearch.Text;
-            IQueryable <Category> filterCategory = categoryService.SearchByName(name);
+            IQueryable<Category> filterCategory = categoryService.SearchByName(name);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = filterCategory;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            adminPanle adminPanle = new adminPanle();
+            adminPanle.Show();
+            this.Hide();
         }
     }
 }

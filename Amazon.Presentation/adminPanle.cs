@@ -16,5 +16,20 @@ namespace Amazon.Presentation
         {
             InitializeComponent();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            CategoyForm categoyForm = new CategoyForm();
+            categoyForm.Show();
+            this.Hide();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            ProductForm productForm = new ProductForm();
+            productForm.Show();
+            this.Hide();
+        }
     }
+
 }

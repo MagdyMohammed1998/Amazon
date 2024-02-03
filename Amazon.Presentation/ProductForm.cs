@@ -37,15 +37,15 @@ namespace Amazon.Presentation
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
 
-                var product = (Product)selectedRow.DataBoundItem;
+                textBox1.Text = selectedRow.Cells["Name"].Value.ToString();
+                textBox2.Text = selectedRow.Cells["Price"].Value.ToString();
+                textBox3.Text = selectedRow.Cells["Quantity"].Value.ToString();
+                textBox4.Text = selectedRow.Cells["Description"].Value.ToString();
 
-                textBox1.Text = product.Name;
-                textBox2.Text = product.Price.ToString();
-                textBox3.Text = product.Quantity.ToString();
-                textBox4.Text = product.Description;
+                string imagePath = selectedRow.Cells["Image"].Value.ToString();
+                pictureBox1.Image = Image.FromFile(imagePath);
 
-
-                pictureBox1.ImageLocation = product.Image;
+                
             }
         }
 
@@ -78,6 +78,7 @@ namespace Amazon.Presentation
             };
 
             productService.Add(newProduct);
+            dataGridView1.Columns["Image"].Visible = false;
             string NewPath = Environment.CurrentDirectory + "\\images\\Product\\" + newProduct.Id + ".jpg";
             File.Copy(ImagePath, NewPath);
 
@@ -106,21 +107,28 @@ namespace Amazon.Presentation
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                int selectedProductId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
-                Product productToDelete = productService.GetById(selectedProductId);
+                
 
-                if (productToDelete != null)
+                var selectedProductId = dataGridView1.SelectedRows[0];
+
+                var productToDelete = selectedProductId.DataBoundItem as Product;
+              
+                if(productToDelete != null)
                 {
                     productService.Delete(productToDelete);
-                    CrearTextBoxes();
+
                     clearpictur();
                     RefreshDataGridView();
                     MessageBox.Show("Product deleted successfully");
+
                 }
                 else
                 {
                     MessageBox.Show("Please select a product to delete.");
                 }
+
+
+                
             }
         }
 
@@ -162,16 +170,43 @@ namespace Amazon.Presentation
         // Get all products
         private void button4_Click(object sender, EventArgs e)
         {
-            IQueryable<Product> allProducts = productService.GetAll();
-            dataGridView1.DataSource = allProducts.ToList();
+            var allProducts = productService.GetAll();
+
+            var SelectedProduct = allProducts.Select(p => new
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Quantity = p.Quantity,
+                Description = p.Description,
+                Image = p.Image,
+
+            }).ToList();
+
+           
+            dataGridView1.DataSource = SelectedProduct;
+            dataGridView1.Columns["Image"].Visible = false;
+
         }
 
         // Refresh DataGridView
         private void RefreshDataGridView()
         {
-            IQueryable<Product> allProducts = productService.GetAll();
-            dataGridView1.DataSource = null;
+            var allProducts = productService.GetAll();
+            var SelectedProduct = allProducts.Select(p => new
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Quantity = p.Quantity,
+                Description = p.Description,
+                Image = p.Image,
+
+            }).ToList();
+
+            //dataGridView1.DataSource = null;
             dataGridView1.DataSource = allProducts.ToList();
+            dataGridView1.Columns["Image"].Visible = false;
         }
 
         // Clear text boxes
@@ -192,10 +227,23 @@ namespace Amazon.Presentation
         // Search for products
         private void Search_Click(object sender, EventArgs e)
         {
-            string name = ProductSearch.Text;
-            IQueryable<Product> filterProduct = productService.SearchByName(name);
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = filterProduct.ToList();
+            string name = textBox1.Text;
+            var filterProduct = productService.SearchByName(name);
+            var filterProductSelect = filterProduct.Select(p => new
+            {
+                Name = p.Name,
+                Price = p.Price,
+                Quantity = p.Quantity,
+                Description = p.Description,
+                Image = p.Image,
+            }).ToList();
+
+            // dataGridView1.DataSource = null;
+            dataGridView1.DataSource = filterProductSelect;
+            dataGridView1.Columns["Image"].Visible = false;
+
+            
+        
         }
 
 
@@ -207,6 +255,11 @@ namespace Amazon.Presentation
             comboBox1.ValueMember = "Id";
         }
 
-        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            adminPanle adminPanle = new adminPanle();
+            adminPanle.Show();
+            this.Close();
+        }
     }
 }

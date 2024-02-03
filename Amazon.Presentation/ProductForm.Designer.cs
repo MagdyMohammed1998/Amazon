@@ -121,6 +121,7 @@ namespace Amazon.Presentation
             button7.TabIndex = 14;
             button7.Text = "Exit";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // textBox1
             // 
@@ -136,7 +137,7 @@ namespace Amazon.Presentation
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(373, 54);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(622, 314);
+            dataGridView1.Size = new Size(482, 301);
             dataGridView1.TabIndex = 16;
             // 
             // textBox2

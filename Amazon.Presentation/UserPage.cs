@@ -53,7 +53,7 @@ namespace Amazon.Presentation
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                var selectedRow = dataGridView1.SelectedRows[0];
 
                 label1.Text = selectedRow.Cells["Name"].Value.ToString();
                 label2.Text = selectedRow.Cells["Price"].Value.ToString();

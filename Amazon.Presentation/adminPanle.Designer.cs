@@ -58,6 +58,7 @@
             label2.Size = new Size(91, 19);
             label2.TabIndex = 1;
             label2.Text = "Add Product";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -69,6 +70,7 @@
             label3.Size = new Size(102, 19);
             label3.TabIndex = 2;
             label3.Text = "Add Category";
+            label3.Click += label3_Click;
             // 
             // label4
             // 

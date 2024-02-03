@@ -36,7 +36,7 @@
             button3 = new Button();
             button4 = new Button();
             button7 = new Button();
-            CategoryNameText = new TextBox();
+            TextBox1 = new TextBox();
             Search = new Button();
             texSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -48,14 +48,15 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(347, 84);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(439, 263);
+            dataGridView1.Size = new Size(218, 199);
             dataGridView1.TabIndex = 17;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(315, 22);
+            label3.ForeColor = Color.Gold;
+            label3.Location = new Point(212, 9);
             label3.Name = "label3";
             label3.Size = new Size(195, 24);
             label3.TabIndex = 18;
@@ -74,7 +75,7 @@
             // button1
             // 
             button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(32, 456);
+            button1.Location = new Point(4, 372);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 27;
@@ -85,7 +86,7 @@
             // button2
             // 
             button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(170, 456);
+            button2.Location = new Point(137, 372);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 28;
@@ -96,7 +97,7 @@
             // button3
             // 
             button3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(300, 456);
+            button3.Location = new Point(263, 372);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 29;
@@ -107,7 +108,7 @@
             // button4
             // 
             button4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(441, 456);
+            button4.Location = new Point(415, 372);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 30;
@@ -118,20 +119,21 @@
             // button7
             // 
             button7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.Location = new Point(796, 465);
+            button7.Location = new Point(499, 426);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 31;
             button7.Text = "Exit";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
-            // CategoryNameText
+            // TextBox1
             // 
-            CategoryNameText.Location = new Point(93, 171);
-            CategoryNameText.Margin = new Padding(4, 3, 4, 3);
-            CategoryNameText.Name = "CategoryNameText";
-            CategoryNameText.Size = new Size(152, 23);
-            CategoryNameText.TabIndex = 32;
+            TextBox1.Location = new Point(93, 171);
+            TextBox1.Margin = new Padding(4, 3, 4, 3);
+            TextBox1.Name = "TextBox1";
+            TextBox1.Size = new Size(152, 23);
+            TextBox1.TabIndex = 32;
             // 
             // Search
             // 
@@ -156,11 +158,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(898, 516);
+            BackColor = Color.DarkCyan;
+            ClientSize = new Size(610, 461);
             Controls.Add(texSearch);
             Controls.Add(Search);
-            Controls.Add(CategoryNameText);
+            Controls.Add(TextBox1);
             Controls.Add(button7);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -186,7 +188,7 @@
         private Button button3;
         private Button button4;
         private Button button7;
-        private TextBox CategoryNameText;
+        private TextBox TextBox1;
         private Button Search;
         private TextBox texSearch;
     }
