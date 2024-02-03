@@ -78,7 +78,8 @@ namespace Amazon.Presentation
             };
 
             productService.Add(newProduct);
-            dataGridView1.Columns["Image"].Visible = false;
+         
+   
             string NewPath = Environment.CurrentDirectory + "\\images\\Product\\" + newProduct.Id + ".jpg";
             File.Copy(ImagePath, NewPath);
 
@@ -107,20 +108,18 @@ namespace Amazon.Presentation
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                
 
-                var selectedProductId = dataGridView1.SelectedRows[0];
 
-                var productToDelete = selectedProductId.DataBoundItem as Product;
-              
-                if(productToDelete != null)
+                int selectedProductId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+                Product productToDelete = productService.GetById(selectedProductId);
+
+                if (productToDelete != null)
                 {
                     productService.Delete(productToDelete);
-
+                    CrearTextBoxes();
                     clearpictur();
                     RefreshDataGridView();
                     MessageBox.Show("Product deleted successfully");
-
                 }
                 else
                 {
@@ -128,7 +127,7 @@ namespace Amazon.Presentation
                 }
 
 
-                
+
             }
         }
 
