@@ -43,7 +43,7 @@ namespace Amazon.Applacation.Service
         public IQueryable <Product> GetAll()
         {
            var Data = _productRepository.GetALL();
-            _productRepository.Save();
+            
             return Data;
 
 
@@ -55,7 +55,7 @@ namespace Amazon.Applacation.Service
             if(id != 0)
             {
                 var Data = _productRepository.GetById(id);
-                _productRepository.Save();
+               
                 return Data;
             }
             else
@@ -78,14 +78,14 @@ namespace Amazon.Applacation.Service
         public IQueryable <Product> SearchByName(string name)
         {
             var Data = _productRepository.SearchByName(name);
-            _productRepository.Save();
+            
             return Data;
         }
 
         public IQueryable<Product> GetProductsByQuantity(int quantity)
         {
             var Data = _productRepository.GetProductsByQuantity(quantity);
-            _productRepository.Save();
+            
             return Data;
         }
 
