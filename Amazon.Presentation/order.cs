@@ -2,6 +2,7 @@
 using Amazon.Context;
 using Amazon.Infrastructure.Repositories;
 using Amazon.Models.Models;
+using Amazon.Presentation;
 using E_Commerce.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,19 @@ namespace Amazon
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void order_Load_1(object sender, EventArgs e)
+        {
+
+            UserLogin loginForm = new UserLogin();
+            loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
+
+        }
+        private void LoginForm_UserLoggedIn(object sender, string userEmail)
+        {
+
+            UserName.Text = userEmail;
         }
     }
 }

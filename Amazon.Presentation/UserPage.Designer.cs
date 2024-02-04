@@ -39,6 +39,7 @@
             button2 = new Button();
             button3 = new Button();
             panel1 = new Panel();
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -51,10 +52,11 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(342, 233);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(260, 33);
+            textBox1.Location = new Point(423, 33);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(182, 23);
             textBox1.TabIndex = 1;
@@ -75,18 +77,19 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(18, 104);
+            label1.Location = new Point(12, 33);
             label1.Name = "label1";
             label1.Size = new Size(63, 24);
             label1.TabIndex = 3;
             label1.Text = "Name";
+            label1.Click += label1_Click;
             // 
             // button1
             // 
             button1.FlatAppearance.BorderColor = Color.Black;
             button1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(0, 192, 0);
-            button1.Location = new Point(448, 31);
+            button1.Location = new Point(611, 31);
             button1.Name = "button1";
             button1.Size = new Size(82, 25);
             button1.TabIndex = 4;
@@ -145,10 +148,17 @@
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Location = new Point(18, 12);
+            panel1.Location = new Point(653, 385);
             panel1.Name = "panel1";
             panel1.Size = new Size(63, 44);
             panel1.TabIndex = 10;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(81, 37);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(182, 23);
+            textBox2.TabIndex = 11;
             // 
             // UserPage
             // 
@@ -156,6 +166,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox2);
             Controls.Add(panel1);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -188,5 +199,6 @@
         private Button button2;
         private Button button3;
         private Panel panel1;
+        private TextBox textBox2;
     }
 }

@@ -64,7 +64,7 @@ namespace Amazon
         private void CartFrm_Load(object sender, EventArgs e)
         {
             LoadDataGrid();
-
+            UserLogin loginForm = new UserLogin();
             loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
         }
 
@@ -191,7 +191,7 @@ namespace Amazon
                         selectedCartDetails.Add(new CartDetails
                         {
 
-                            ProductId = productService.GetProductByName(productName),
+                            ProductId = productService.GetProductByName(productName).Id,
                             Quantity = quantity
                         });
                     }

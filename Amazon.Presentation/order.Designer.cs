@@ -112,7 +112,7 @@
             Controls.Add(dataGridView1);
             Name = "order";
             Text = "order";
-            //Load += order_Load;
+            Load += order_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

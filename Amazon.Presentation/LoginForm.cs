@@ -8,11 +8,16 @@ namespace Amazon.Presentation
     {
         IUserService _userService;
         IAdminService _adminService;
+        public event EventHandler<string> UserLoggedIn;
+        public event EventHandler<string> AdminLoggedIn;
+
+
         public UserLogin()
         {
             InitializeComponent();
             _userService = new UserService(new UserRepository(new AmazonContext()), new AdminRepository(new AmazonContext()));
             _adminService = new AdminService(new AdminRepository(new AmazonContext()));
+
         }
 
         private void UserLogin_Load(object sender, EventArgs e)
@@ -22,24 +27,26 @@ namespace Amazon.Presentation
 
         private void Login_Click_1(object sender, EventArgs e)
         {
-            string email = EmaillText.Text;
+            string email = EmaillText.Text; 
             string password = PasworddText.Text;
             if (_adminService.GetAdminEmailAndPassword(email, password))
             {
                
                 adminPanle adminPanle = new adminPanle();
+                AdminLoggedIn?.Invoke(this, email);
                 adminPanle.Show();
                 this.Hide();
             }
             else if (_userService.GetUserEmailAndPassword(email, password))
             {
                 UserPage userPage = new UserPage();
+                UserLoggedIn?.Invoke(this, email);
                 userPage.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Email Or Password Is Not Valid");
+                MessageBox.Show("E  mail Or Password Is Not Valid");
                 clear();
             }
         }

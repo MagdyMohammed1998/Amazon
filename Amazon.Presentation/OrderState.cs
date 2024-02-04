@@ -2,6 +2,7 @@
 using Amazon.Context;
 using Amazon.Infrastructure.Repositories;
 using Amazon.Models.Models;
+using Amazon.Presentation;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Amazon
 {
@@ -47,8 +49,16 @@ namespace Amazon
 
             // Bind all orders to the DataGridView initially
             dataGridView1.DataSource = orderSummary;
-        }
 
+            UserLogin loginForm = new UserLogin();
+            loginForm.AdminLoggedIn += LoginForm_AdminoggedIn;
+
+        }
+        private void LoginForm_AdminoggedIn(object sender, string AdminEmail)
+        {
+
+            textBox1.Text = AdminEmail;
+        }
 
 
         private void SearcByUserName_TextChanged(object sender, EventArgs e)
