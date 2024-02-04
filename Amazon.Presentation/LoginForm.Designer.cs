@@ -118,7 +118,7 @@
             // 
             AutoScaleDimensions = new SizeF(16F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Silver;
+            BackColor = Color.Sienna;
             ClientSize = new Size(713, 386);
             Controls.Add(Register);
             Controls.Add(Login);

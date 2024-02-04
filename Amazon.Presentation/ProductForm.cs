@@ -57,7 +57,17 @@ namespace Amazon.Presentation
         // Add product
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+               string.IsNullOrWhiteSpace(textBox2.Text) ||
+               string.IsNullOrWhiteSpace(textBox3.Text) ||
+               string.IsNullOrWhiteSpace(textBox4.Text) ||
+               comboBox1.SelectedValue == null ||
+                string.IsNullOrWhiteSpace(ImagePath))
+            {
+                MessageBox.Show("Please fill in all the fields and select an image.");
+                return;
+            }
+
             string name = textBox1.Text;
             decimal price = decimal.Parse(textBox2.Text);
             int quantity = int.Parse(textBox3.Text);

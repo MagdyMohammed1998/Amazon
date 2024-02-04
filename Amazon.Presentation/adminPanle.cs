@@ -36,7 +36,7 @@ namespace Amazon.Presentation
 
         private void label4_Click(object sender, EventArgs e)
         {
-            AddAdmin addAdmin = new AddAdmin();
+            AddAdmin addAdmin = new AddAdmin(Email.Text);
             addAdmin.Show();
             this.Hide();
         }

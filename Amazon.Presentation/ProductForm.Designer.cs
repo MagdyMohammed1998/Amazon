@@ -94,6 +94,7 @@ namespace Amazon.Presentation
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Gold;
             label3.Location = new Point(324, 9);
             label3.Name = "label3";
             label3.Size = new Size(184, 24);
@@ -135,7 +136,7 @@ namespace Amazon.Presentation
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(373, 54);
+            dataGridView1.Location = new Point(374, 54);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(482, 301);
             dataGridView1.TabIndex = 16;
@@ -168,6 +169,7 @@ namespace Amazon.Presentation
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Gold;
             label1.Location = new Point(71, 94);
             label1.Name = "label1";
             label1.Size = new Size(49, 19);
@@ -178,6 +180,7 @@ namespace Amazon.Presentation
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Gold;
             label4.Location = new Point(71, 153);
             label4.Name = "label4";
             label4.Size = new Size(43, 19);
@@ -188,6 +191,7 @@ namespace Amazon.Presentation
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Gold;
             label5.Location = new Point(71, 216);
             label5.Name = "label5";
             label5.Size = new Size(67, 19);
@@ -198,6 +202,7 @@ namespace Amazon.Presentation
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Gold;
             label6.Location = new Point(71, 277);
             label6.Name = "label6";
             label6.Size = new Size(86, 19);
@@ -248,6 +253,7 @@ namespace Amazon.Presentation
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Gold;
             label2.Location = new Point(71, 23);
             label2.Name = "label2";
             label2.Size = new Size(71, 19);
@@ -256,10 +262,11 @@ namespace Amazon.Presentation
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(587, 403);
+            textBox5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox5.Location = new Point(802, 9);
             textBox5.Margin = new Padding(4, 3, 4, 3);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(152, 23);
+            textBox5.Size = new Size(158, 26);
             textBox5.TabIndex = 32;
             // 
             // ProductForm

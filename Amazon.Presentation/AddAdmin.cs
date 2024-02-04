@@ -17,9 +17,11 @@ namespace Amazon.Presentation
     {
         private readonly IAdminService adminService = new AdminService(new AdminRepository(new Context.AmazonContext()));
 
-        public AddAdmin()
+        public AddAdmin(string Email)
         {
             InitializeComponent();
+            textBox4.Text = Email;
+
             this.adminService = adminService;
 
             button1.Click += button1_Click;
@@ -31,9 +33,9 @@ namespace Amazon.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string name = textBox1.Text ;
-            string email = textBox2.Text  ;
-            string password = textBox3.Text ;
+            string name = textBox1.Text;
+            string email = textBox2.Text;
+            string password = textBox3.Text;
 
             Admin newAdmin = new Admin
             {
@@ -61,7 +63,7 @@ namespace Amazon.Presentation
 
                 var admintodelete = adminService.GetAdminEmailAndPassword(email, password);
 
-                if(admintodelete != null)
+                if (admintodelete != null)
                 {
                     adminService.DeleteAdmin(email, password);
                 }
@@ -109,6 +111,13 @@ namespace Amazon.Presentation
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            adminPanle adminPanle = new adminPanle(textBox4.Text);
+            adminPanle.Show();
+            this.Hide();
         }
     }
 }

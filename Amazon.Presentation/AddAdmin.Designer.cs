@@ -39,6 +39,8 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            button4 = new Button();
+            textBox4 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)adminview).BeginInit();
             SuspendLayout();
             // 
@@ -64,21 +66,21 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(104, 59);
+            textBox1.Location = new Point(120, 63);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(126, 23);
             textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(104, 102);
+            textBox2.Location = new Point(120, 122);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(126, 23);
             textBox2.TabIndex = 3;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(104, 146);
+            textBox3.Location = new Point(120, 170);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(126, 23);
             textBox3.TabIndex = 4;
@@ -87,7 +89,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 144);
+            label2.Location = new Point(17, 168);
             label2.Name = "label2";
             label2.Size = new Size(90, 21);
             label2.TabIndex = 5;
@@ -97,7 +99,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(18, 102);
+            label3.Location = new Point(21, 122);
             label3.Name = "label3";
             label3.Size = new Size(67, 21);
             label3.TabIndex = 6;
@@ -107,7 +109,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(21, 61);
+            label4.Location = new Point(24, 65);
             label4.Name = "label4";
             label4.Size = new Size(64, 21);
             label4.TabIndex = 7;
@@ -147,11 +149,34 @@
             button3.Text = "GetAll";
             button3.UseVisualStyleBackColor = false;
             // 
+            // button4
+            // 
+            button4.BackColor = SystemColors.ActiveCaption;
+            button4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.Location = new Point(629, 355);
+            button4.Name = "button4";
+            button4.Size = new Size(89, 32);
+            button4.TabIndex = 11;
+            button4.Text = "Exit";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // textBox4
+            // 
+            textBox4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox4.Location = new Point(98, 2);
+            textBox4.Margin = new Padding(4, 3, 4, 3);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(184, 26);
+            textBox4.TabIndex = 36;
+            // 
             // AddAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(789, 439);
+            Controls.Add(textBox4);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -184,5 +209,7 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button button4;
+        private TextBox textBox4;
     }
 }
