@@ -88,5 +88,10 @@ namespace Amazon.Applacation.Service
             _productRepository.Save();
             return Data;
         }
+
+        public int GetProductByName(string productName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

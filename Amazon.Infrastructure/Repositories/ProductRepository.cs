@@ -18,6 +18,11 @@ namespace Amazon.Infrastructure.Repositories
             _Context = context;
         }
 
+        public Product GetProductByName(string productName)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Product> GetProductsByQuantity(int quantity)
         {
             return _Context.Products.Where(p => p.Quantity == quantity);
