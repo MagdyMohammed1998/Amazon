@@ -142,11 +142,16 @@ namespace Amazon.Presentation
 
         private void RefreshDataGridView()
         {
-            IQueryable<Category> Categories = categoryService.GetAll();
+            var Categories = categoryService.GetAll();
+            var SelectedCategory = Categories.Select(c => new
+            {
+                Id = c.Id,
+                Name = c.Name,
+            }).ToList();
 
-            dataGridView1.DataSource = null;
+            //dataGridView1.DataSource = null;
 
-            dataGridView1.DataSource = Categories.ToList();
+            dataGridView1.DataSource = SelectedCategory;
 
         }
 

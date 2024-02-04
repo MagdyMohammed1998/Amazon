@@ -29,7 +29,6 @@ namespace Amazon.Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -235,7 +234,6 @@ namespace Amazon.Presentation
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.White;
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(26, 344);
             pictureBox1.Name = "pictureBox1";

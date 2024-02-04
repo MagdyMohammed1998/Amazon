@@ -20,10 +20,12 @@ namespace Amazon.Presentation
 
         private List<Category> categories;
         private ICategoryService categoryService;
+        private IAdminService adminService;
 
         public ProductForm()
         {
             InitializeComponent();
+            adminService = new AdminService(new AdminRepository(new AmazonContext()));
             productService = new ProductService(new ProductRepository(new AmazonContext()));
             categoryService = new CategoryService(new CategoryRepository(new AmazonContext()));
             LoadCategories();
@@ -53,6 +55,7 @@ namespace Amazon.Presentation
         // Add product
         private void button1_Click(object sender, EventArgs e)
         {
+            
             string name = textBox1.Text;
             decimal price = decimal.Parse(textBox2.Text);
             int quantity = int.Parse(textBox3.Text);
@@ -66,6 +69,14 @@ namespace Amazon.Presentation
                 return;
             }
 
+            var existingImageProduct = productService.GetAll().FirstOrDefault(p => p.Image == ImagePath);
+            if (existingImageProduct != null)
+            {
+                MessageBox.Show("This image is already associated with another product.");
+                return;
+            }
+
+
             Product newProduct = new Product()
             {
                 Name = name,
@@ -78,18 +89,28 @@ namespace Amazon.Presentation
             };
 
             productService.Add(newProduct);
-         
-   
-            string NewPath = Environment.CurrentDirectory + "\\images\\Product\\" + newProduct.Id + ".jpg";
-            File.Copy(ImagePath, NewPath);
 
-            newProduct.Image = NewPath;
+            string newFileName = newProduct.Id + ".jpg";
+            string NewPath = Environment.CurrentDirectory + "\\images\\Product\\" + newFileName;
 
-            CrearTextBoxes();
-            clearpictur();
-            RefreshDataGridView();
+            try
+            {
+                File.Copy(ImagePath, NewPath);
 
-            MessageBox.Show("Product added successfully");
+                newProduct.Image = NewPath;
+                productService.Update(newProduct);
+
+                CrearTextBoxes();
+                clearpictur();
+                RefreshDataGridView();
+
+                MessageBox.Show("Product added successfully");
+            }
+             catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+           
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -204,7 +225,7 @@ namespace Amazon.Presentation
             }).ToList();
 
             //dataGridView1.DataSource = null;
-            dataGridView1.DataSource = allProducts.ToList();
+            dataGridView1.DataSource = SelectedProduct;
             dataGridView1.Columns["Image"].Visible = false;
         }
 
@@ -220,7 +241,7 @@ namespace Amazon.Presentation
 
         private void clearpictur()
         {
-            pictureBox1.ImageLocation = null;
+            pictureBox1.Image = null;
         }
 
         // Search for products
