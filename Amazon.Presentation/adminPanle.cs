@@ -30,6 +30,13 @@ namespace Amazon.Presentation
             productForm.Show();
             this.Hide();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            AddAdmin addAdmin = new AddAdmin();
+            addAdmin.Show();
+            this.Hide();
+        }
     }
 
 }

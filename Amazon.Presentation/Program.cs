@@ -14,9 +14,9 @@ namespace Amazon.Presentation
 
             //Application.Run(new UserPage());
 
-            //Application.Run(new UserLogin());
+            Application.Run(new UserLogin());
 
-            Application.Run(new ProductForm());
+            //Application.Run(new AddAdmin());
 
             //Application.Run(new CategoyForm());
 
