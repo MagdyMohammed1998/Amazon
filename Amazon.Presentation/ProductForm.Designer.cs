@@ -49,6 +49,7 @@ namespace Amazon.Presentation
             comboBox1 = new ComboBox();
             pictureBox1 = new PictureBox();
             label2 = new Label();
+            textBox5 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -253,12 +254,21 @@ namespace Amazon.Presentation
             label2.TabIndex = 31;
             label2.Text = "Category";
             // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(587, 403);
+            textBox5.Margin = new Padding(4, 3, 4, 3);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(152, 23);
+            textBox5.TabIndex = 32;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
             ClientSize = new Size(1033, 712);
+            Controls.Add(textBox5);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(comboBox1);
@@ -311,5 +321,6 @@ namespace Amazon.Presentation
         private ComboBox comboBox1;
         private PictureBox pictureBox1;
         private Label label2;
+        private TextBox textBox5;
     }
 }

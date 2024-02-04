@@ -22,9 +22,11 @@ namespace Amazon.Presentation
         private ICategoryService categoryService;
         private IAdminService adminService;
 
-        public ProductForm()
+        public ProductForm(string Email)
         {
             InitializeComponent();
+            textBox5.Text = Email;
+
             adminService = new AdminService(new AdminRepository(new AmazonContext()));
             productService = new ProductService(new ProductRepository(new AmazonContext()));
             categoryService = new CategoryService(new CategoryRepository(new AmazonContext()));
@@ -277,7 +279,7 @@ namespace Amazon.Presentation
 
         private void button7_Click(object sender, EventArgs e)
         {
-            adminPanle adminPanle = new adminPanle();
+            adminPanle adminPanle = new adminPanle(textBox5.Text);
             adminPanle.Show();
             this.Close();
         }

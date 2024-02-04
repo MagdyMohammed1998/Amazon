@@ -12,21 +12,24 @@ namespace Amazon.Presentation
 {
     public partial class adminPanle : Form
     {
-        public adminPanle()
+        public adminPanle( string adminEmail)
         {
             InitializeComponent();
+
+            Email.Text = adminEmail;
+            
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            CategoyForm categoyForm = new CategoyForm();
+            CategoyForm categoyForm = new CategoyForm(Email.Text);
             categoyForm.Show();
             this.Hide();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            ProductForm productForm = new ProductForm();
+            ProductForm productForm = new ProductForm(Email.Text);
             productForm.Show();
             this.Hide();
         }
