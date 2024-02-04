@@ -89,6 +89,11 @@ namespace Amazon.Applacation.Service
         {
             throw new NotImplementedException();
         }
+
+        public User GetUserByEmail(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

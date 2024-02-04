@@ -65,7 +65,7 @@ namespace Amazon
         {
             LoadDataGrid();
 
-            loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
+         //   loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
         }
 
         private void LoginForm_UserLoggedIn(object sender, string userEmail)

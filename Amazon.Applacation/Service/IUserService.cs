@@ -10,6 +10,7 @@ namespace Amazon.Applacation.Service
         User AddUser(User user);
         void DeleteUser(User user);
         IQueryable<User> GetAllUsers();
+        User GetUserByEmail(string text);
         User GetUserById(int id);
         User UpdateUser(User user);
 

@@ -15,9 +15,6 @@ namespace Amazon.Applacation.Contract
         IQueryable <Product> SearchByName(string name);
 
         IQueryable<Product> GetProductsByQuantity(int quantity);
-
-
-
-
+        Product GetProductByName(string productName);
     }
 }
