@@ -50,6 +50,23 @@ namespace Amazon.Applacation.Service
             }
         }
 
+        public Admin GetAdmin(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Admin GetAdminByEmail(string email)
+        {
+            if (email != null)
+            {
+                return _adminRepository.GetAdmin(email);
+            }
+            else
+            {
+                throw new NotImplementedException("email is not vaild");
+            }
+        }
+
         public bool GetAdminEmailAndPassword(string email, string password)
         {
             return _adminRepository.GetAdminEmailAndPassword(email.ToLower(), password);

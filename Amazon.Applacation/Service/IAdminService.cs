@@ -13,5 +13,6 @@ namespace Amazon.Applacation.Service
         Admin AddAdmin(Admin admin);
         void DeleteAdmin(string email , string password);
         IQueryable<Admin> GetAllAdmin();
+        Admin GetAdminByEmail(string email);
     }
 }

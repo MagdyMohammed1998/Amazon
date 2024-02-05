@@ -9,12 +9,18 @@ namespace Amazon.Applacation.Service
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IAdminRepository _adminRepository;
 
+
+        public OrderService(IOrderRepository orderRepository, IAdminRepository adminRepository)
+        {
+            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
+            _adminRepository = adminRepository ?? throw new ArgumentNullException(nameof(adminRepository));
+        }
         public OrderService(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
         }
-
         public Order Add(Order order)
         {
             if (order is not null)
@@ -30,14 +36,14 @@ namespace Amazon.Applacation.Service
             }
         }
 
-        public Order UpdateState(int orderId, StateOrder newState,int AdminId)
+        public Order UpdateState(int orderId, StateOrder newState,string Email)
         {
             var order = _orderRepository.GetById(orderId);
-
+            int adminId = _adminRepository.GetAdmin(Email).Id;
             if (order is not null)
             {
                 order.StateOrder = newState;
-                order.Admin_Id = AdminId;
+                order.Admin_Id = adminId;
                 var res = _orderRepository.Update(order);
                 _orderRepository.Save();
                 return res;

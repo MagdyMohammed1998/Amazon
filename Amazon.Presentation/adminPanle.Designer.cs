@@ -116,6 +116,7 @@
             label1.Size = new Size(84, 19);
             label1.TabIndex = 34;
             label1.Text = "OrderState";
+            label1.Click += label1_Click;
             // 
             // adminPanle
             // 

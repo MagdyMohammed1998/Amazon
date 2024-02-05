@@ -12,12 +12,12 @@ namespace Amazon.Presentation
 {
     public partial class adminPanle : Form
     {
-        public adminPanle( string adminEmail)
+        public adminPanle(string adminEmail)
         {
             InitializeComponent();
 
             Email.Text = adminEmail;
-            
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -38,6 +38,13 @@ namespace Amazon.Presentation
         {
             AddAdmin addAdmin = new AddAdmin(Email.Text);
             addAdmin.Show();
+            this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            OrderState orderState = new OrderState(Email.Text);
+            orderState.Show();
             this.Hide();
         }
     }

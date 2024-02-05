@@ -24,9 +24,10 @@ namespace Amazon
 
         AmazonContext _Context = new AmazonContext();
         int orderID;
-        public OrderState()
+        public OrderState(string email)
         {
             InitializeComponent();
+            textBox1.Text = email;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -128,7 +129,7 @@ namespace Amazon
                 if (comboBoxOrderState.SelectedItem is StateOrder newOrderState)
                 {
 
-                    orderService.UpdateState(orderID, newOrderState,5);
+                    orderService.UpdateState(orderID, newOrderState,textBox1.Text);
 
                     MessageBox.Show($"Order state updated from {currentOrderState} to {newOrderState}");
                     LoadDatagrid();

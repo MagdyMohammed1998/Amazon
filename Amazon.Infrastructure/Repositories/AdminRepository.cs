@@ -68,5 +68,10 @@ namespace Amazon.Infrastructure.Repositories
                 }
             }
         }
+
+        public Admin GetAdmin(string email)
+        {
+          return  _Context.Admins.FirstOrDefault(a=>a.Email == email);
+        }
     }
 }
