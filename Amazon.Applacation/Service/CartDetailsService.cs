@@ -69,7 +69,7 @@ namespace Amazon.Applacation.Service
             ValidateCartDetails(cartDetails);
 
 
-            if (product != null && product.Quantity >= newQuantity)
+            if (product != null && product.Quantity >= newQuantity && product.Quantity != 0)
             {
                 cartDetails.Quantity = newQuantity;
                 CartDetails updatedCartDetails = _cartDetailsRepository.Update(cartDetails);

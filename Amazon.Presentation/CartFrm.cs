@@ -47,12 +47,16 @@ namespace Amazon
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-
-            if (!int.TryParse(cartQuantatiy.Text, out _) && cartQuantatiy.Text != "")
+            if(!int.TryParse(cartQuantatiy.Text, out _)   && cartQuantatiy.Text != "")
             {
-                MessageBox.Show("Please Enter a Valid Quantity.");
-                cartQuantatiy.Text = "";
+                
+            
+                    MessageBox.Show("Please Enter a Valid Quantity.");
+                    cartQuantatiy.Text = "";
+                
             }
+           
+
 
 
         }
@@ -66,7 +70,7 @@ namespace Amazon
         {
             LoadDataGrid();
             UserLogin loginForm = new UserLogin();
-           
+
         }
 
         private void LoginForm_UserLoggedIn(object sender, string userEmail)
@@ -194,7 +198,7 @@ namespace Amazon
 
                             ProductId = productService.GetProductByName(productName).Id,
                             Quantity = quantity
-                        }); 
+                        });
                     }
                 }
 
@@ -234,7 +238,17 @@ namespace Amazon
         private void button1_Click(object sender, EventArgs e)
         {
             order order = new order(UserName.Text);
-            order.ShowDialog();
+            order.Show();
+            this.Hide();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UserPage userPage = new UserPage(UserName.Text);
+            userPage.Show();
+            this.Hide();
+
         }
     }
 }     

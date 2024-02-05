@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPage));
             dataGridView1 = new DataGridView();
             textBox1 = new TextBox();
             pictureBox1 = new PictureBox();
@@ -38,8 +37,10 @@
             label3 = new Label();
             button2 = new Button();
             button3 = new Button();
-            panel1 = new Panel();
             textBox2 = new TextBox();
+            label4 = new Label();
+            textBox3 = new TextBox();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,9 +49,9 @@
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(389, 104);
+            dataGridView1.Location = new Point(373, 104);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(342, 233);
+            dataGridView1.Size = new Size(415, 233);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -77,7 +78,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(12, 33);
+            label1.Location = new Point(12, 110);
             label1.Name = "label1";
             label1.Size = new Size(63, 24);
             label1.TabIndex = 3;
@@ -124,41 +125,63 @@
             button2.FlatAppearance.BorderColor = Color.Black;
             button2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.OrangeRed;
-            button2.Location = new Point(53, 367);
+            button2.Location = new Point(181, 385);
             button2.Name = "button2";
             button2.Size = new Size(82, 25);
             button2.TabIndex = 7;
-            button2.Text = "To Cart";
+            button2.Text = "Add Cart";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
             button3.FlatAppearance.BorderColor = Color.Black;
             button3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.FromArgb(0, 192, 0);
-            button3.Location = new Point(222, 367);
+            button3.Location = new Point(373, 385);
             button3.Name = "button3";
-            button3.Size = new Size(82, 25);
+            button3.Size = new Size(106, 25);
             button3.TabIndex = 8;
-            button3.Text = "Buy Now";
+            button3.Text = "Go To Cart";
             button3.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Location = new Point(653, 385);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(63, 44);
-            panel1.TabIndex = 10;
+            button3.Click += button3_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(81, 37);
+            textBox2.Location = new Point(35, 31);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(182, 23);
             textBox2.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Gold;
+            label4.Location = new Point(164, 264);
+            label4.Name = "label4";
+            label4.Size = new Size(0, 24);
+            label4.TabIndex = 12;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(65, 314);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(87, 23);
+            textBox3.TabIndex = 13;
+            // 
+            // button4
+            // 
+            button4.FlatAppearance.BorderColor = Color.Black;
+            button4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.ForeColor = Color.OrangeRed;
+            button4.Location = new Point(241, 31);
+            button4.Name = "button4";
+            button4.Size = new Size(82, 26);
+            button4.TabIndex = 14;
+            button4.Text = "Log Out";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // UserPage
             // 
@@ -166,8 +189,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
             ClientSize = new Size(800, 450);
+            Controls.Add(button4);
+            Controls.Add(textBox3);
+            Controls.Add(label4);
             Controls.Add(textBox2);
-            Controls.Add(panel1);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(label3);
@@ -198,7 +223,9 @@
         private Label label3;
         private Button button2;
         private Button button3;
-        private Panel panel1;
         private TextBox textBox2;
+        private Label label4;
+        private TextBox textBox3;
+        private Button button4;
     }
 }

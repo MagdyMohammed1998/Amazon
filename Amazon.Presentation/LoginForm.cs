@@ -38,12 +38,16 @@ namespace Amazon.Presentation
             }
             else if (_userService.GetUserEmailAndPassword(email, password))
             {
-
-                prodcuts prodcuts = new prodcuts(email);
-
+                UserPage userPage = new UserPage(email);
                 UserLoggedIn?.Invoke(this, email);
-                prodcuts.Show();
+                userPage.ShowDialog();
                 this.Hide();
+
+                //prodcuts prodcuts = new prodcuts(email);
+
+                //UserLoggedIn?.Invoke(this, email);
+                //prodcuts.Show();
+                //this.Hide();
             }
             else
             {

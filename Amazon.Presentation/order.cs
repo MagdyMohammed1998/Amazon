@@ -65,39 +65,46 @@ namespace Amazon
 
         }
 
-        
-            private void order_Load_1(object sender, EventArgs e)
+
+        private void order_Load_1(object sender, EventArgs e)
+        {
+            User currentUser = UserService.GetUserByEmail(UserName.Text);
+
+            if (currentUser != null)
             {
-                User currentUser = UserService.GetUserByEmail(UserName.Text);
+                var orderSummary = _Context.Orders
+                    .Include(o => o.OrderDetail)  // Ensure that OrderDetail is loaded
+                    .Where(o => o.UserId == currentUser.Id)
+                    .ToList()
+                    .Select(o => new
+                    {
+                        OrderDate = o.OrderDate,
+                        OrderState = o.StateOrder,
+                        TotalPrice = o.OrderDetail?.Sum(od => od.Price * od.Quantity) ?? 0,
+                        TotalQuantity = o.OrderDetail?.Sum(od => od.Quantity) ?? 0
+                    })
+                    .ToList();
 
-                if (currentUser != null)
-                {
-                    var orderSummary = _Context.Orders
-                        .Include(o => o.OrderDetail)  // Ensure that OrderDetail is loaded
-                        .Where(o => o.UserId == currentUser.Id)
-                        .ToList()
-                        .Select(o => new
-                        {
-                            OrderDate = o.OrderDate,
-                            OrderState = o.StateOrder,
-                            TotalPrice = o.OrderDetail?.Sum(od => od.Price * od.Quantity) ?? 0,
-                            TotalQuantity = o.OrderDetail?.Sum(od => od.Quantity) ?? 0
-                        })
-                        .ToList();
-
-                    dataGridView1.DataSource = orderSummary;
-                }
-                else
-                {
-                    MessageBox.Show("User not found.");
-                }
+                dataGridView1.DataSource = orderSummary;
             }
+            else
+            {
+                MessageBox.Show("User not found.");
+            }
+        }
 
-        
+
         private void LoginForm_UserLoggedIn(object sender, string userEmail)
         {
 
             UserName.Text = userEmail;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            CartFrm cartFrm = new CartFrm(UserName.Text);
+            cartFrm.Show();
+            this.Hide();
         }
     }
 }

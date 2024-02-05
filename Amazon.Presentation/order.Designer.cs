@@ -32,6 +32,7 @@
             dataGridView1 = new DataGridView();
             UserName = new TextBox();
             label1 = new Label();
+            button7 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -42,9 +43,9 @@
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             label3.Location = new Point(23, 55);
             label3.Name = "label3";
-            label3.Size = new Size(99, 25);
+            label3.Size = new Size(111, 25);
             label3.TabIndex = 10;
-            label3.Text = "Yor Order";
+            label3.Text = "Your Order";
             // 
             // dataGridView1
             // 
@@ -77,11 +78,23 @@
             label1.TabIndex = 22;
             label1.Text = "User Name :";
             // 
+            // button7
+            // 
+            button7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button7.Location = new Point(575, 422);
+            button7.Name = "button7";
+            button7.Size = new Size(75, 23);
+            button7.TabIndex = 23;
+            button7.Text = "Exit";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // order
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(713, 494);
+            Controls.Add(button7);
             Controls.Add(label1);
             Controls.Add(UserName);
             Controls.Add(label3);
@@ -102,5 +115,6 @@
         private Label label1;
         private Label label5;
         private TextBox ordertotalprice;
+        private Button button7;
     }
 }

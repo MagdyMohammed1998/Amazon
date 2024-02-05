@@ -37,6 +37,7 @@
             label4 = new Label();
             textBox1 = new TextBox();
             UpdateStateOfOrder = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -138,11 +139,24 @@
             UpdateStateOfOrder.UseVisualStyleBackColor = false;
             UpdateStateOfOrder.Click += UpdateStateOfOrder_Click;
             // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaption;
+            button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            button1.Location = new Point(624, 454);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 29);
+            button1.TabIndex = 31;
+            button1.Text = "Exit";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // OrderState
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(732, 506);
+            Controls.Add(button1);
             Controls.Add(UpdateStateOfOrder);
             Controls.Add(label4);
             Controls.Add(textBox1);
@@ -171,5 +185,6 @@
         private Label label4;
         private TextBox textBox1;
         private Button UpdateStateOfOrder;
+        private Button button1;
     }
 }

@@ -36,6 +36,7 @@
             label6 = new Label();
             Email = new TextBox();
             label1 = new Label();
+            label7 = new Label();
             SuspendLayout();
             // 
             // label2
@@ -118,6 +119,18 @@
             label1.Text = "OrderState";
             label1.Click += label1_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Red;
+            label7.Location = new Point(25, 318);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(64, 19);
+            label7.TabIndex = 35;
+            label7.Text = "Log Out";
+            label7.Click += label7_Click;
+            // 
             // adminPanle
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -125,6 +138,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1029, 570);
+            Controls.Add(label7);
             Controls.Add(label1);
             Controls.Add(Email);
             Controls.Add(label6);
@@ -148,5 +162,6 @@
         private Label label6;
         private TextBox Email;
         private Label label1;
+        private Label label7;
     }
 }

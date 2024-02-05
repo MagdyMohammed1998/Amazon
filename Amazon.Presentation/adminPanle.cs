@@ -47,6 +47,15 @@ namespace Amazon.Presentation
             orderState.Show();
             this.Hide();
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            UserLogin userLogin = new UserLogin();
+            userLogin.Show();
+            this.Hide();
+
+
+        }
     }
 
 }

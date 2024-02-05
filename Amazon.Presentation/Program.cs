@@ -14,14 +14,14 @@ namespace Amazon.Presentation
 
             //Application.Run(new UserPage());
 
-           // Application.Run(new OrderState());
+            // Application.Run(new OrderState());
 
             Application.Run(new UserLogin());
 
             //Application.Run(new CategoyForm());
 
             //Application.Run(new adminPanle());
-           //  Application.Run(new order());
+            //  Application.Run(new order());
 
 
 

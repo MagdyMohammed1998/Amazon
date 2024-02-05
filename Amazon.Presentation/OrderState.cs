@@ -148,7 +148,7 @@ namespace Amazon
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-           
+
         }
 
         private void dataGridView1_MouseClick_1(object sender, MouseEventArgs e)
@@ -159,7 +159,7 @@ namespace Amazon
                 {
                     int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
-                     orderID = (int)dataGridView1.Rows[rowIndex].Cells["id"].Value;
+                    orderID = (int)dataGridView1.Rows[rowIndex].Cells["id"].Value;
 
 
                     comboBoxOrderState.SelectedItem = orderService.GetOrderById(orderID).StateOrder;
@@ -171,9 +171,16 @@ namespace Amazon
             catch (Exception)
             {
 
-                
+
             }
-           
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            adminPanle adminPanle = new adminPanle(textBox1.Text);
+            adminPanle.Show();
+            this.Hide();
         }
     }
 }

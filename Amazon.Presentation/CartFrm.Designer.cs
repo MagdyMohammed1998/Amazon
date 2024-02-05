@@ -44,6 +44,7 @@
             cartQuantatiy = new DomainUpDown();
             OrderNow = new Button();
             button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -199,7 +200,7 @@
             // 
             OrderNow.BackColor = SystemColors.ActiveCaption;
             OrderNow.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            OrderNow.Location = new Point(175, 374);
+            OrderNow.Location = new Point(42, 378);
             OrderNow.Name = "OrderNow";
             OrderNow.Size = new Size(155, 29);
             OrderNow.TabIndex = 29;
@@ -211,7 +212,7 @@
             // 
             button1.BackColor = SystemColors.ActiveCaption;
             button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            button1.Location = new Point(351, 465);
+            button1.Location = new Point(296, 378);
             button1.Name = "button1";
             button1.Size = new Size(155, 29);
             button1.TabIndex = 30;
@@ -219,11 +220,24 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.ActiveCaption;
+            button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            button2.Location = new Point(613, 437);
+            button2.Name = "button2";
+            button2.Size = new Size(92, 29);
+            button2.TabIndex = 31;
+            button2.Text = "Back";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // CartFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(762, 506);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(OrderNow);
             Controls.Add(cartQuantatiy);
@@ -270,5 +284,6 @@
         private Button OrderNow;
         public DomainUpDown cartQuantatiy;
         private Button button1;
+        private Button button2;
     }
 }
