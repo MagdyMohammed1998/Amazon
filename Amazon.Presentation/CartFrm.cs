@@ -66,7 +66,7 @@ namespace Amazon
         {
             LoadDataGrid();
             UserLogin loginForm = new UserLogin();
-            loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
+           
         }
 
         private void LoginForm_UserLoggedIn(object sender, string userEmail)
@@ -194,7 +194,7 @@ namespace Amazon
 
                             ProductId = productService.GetProductByName(productName).Id,
                             Quantity = quantity
-                        });
+                        }); 
                     }
                 }
 

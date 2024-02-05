@@ -39,11 +39,11 @@ namespace Amazon.Applacation.Service
         public Order UpdateState(int orderId, StateOrder newState,string Email)
         {
             var order = _orderRepository.GetById(orderId);
-            int adminId = _adminRepository.GetAdmin(Email).Id;
+           
             if (order is not null)
             {
                 order.StateOrder = newState;
-                order.Admin_Id = adminId;
+                
                 var res = _orderRepository.Update(order);
                 _orderRepository.Save();
                 return res;

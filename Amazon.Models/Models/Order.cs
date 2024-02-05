@@ -19,11 +19,10 @@ namespace Amazon.Models.Models
         public int UserId { get; set; }
 
         [ForeignKey("Admin")]
-        public int? Admin_Id { get; set; }
+       
         //Relations
 
-        public virtual Admin? Admin { get; set; }
-
+       
         public virtual List<OrderDetails> OrderDetail { get; set; }
 
         public virtual User User { get; set; }
