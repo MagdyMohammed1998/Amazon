@@ -31,9 +31,10 @@ namespace Amazon
 
 
 
-        public prodcuts()
+        public prodcuts(string email)
         {
             InitializeComponent();
+            UserName.Text = email;
         }
 
         private void AddToCard_Click(object sender, EventArgs e)
@@ -72,7 +73,10 @@ namespace Amazon
                 };
 
                 CartDetailsService.Add(newCartDetails);
-                Console.WriteLine("Your Product added successfully to the Cart ");
+                MessageBox.Show($"Your Product added To Cart By Quantity is{quantity}.");
+                LoadDataGrid();
+                ClearData();
+
             }
             else
             {
@@ -86,7 +90,13 @@ namespace Amazon
 
 
 
-
+        private void ClearData()
+        {
+            ProducetName.Text = "";
+            ProducetPrice.Text = "";
+            Quantites.Text = "";
+            TotalPrice.Text = "";
+        }
 
 
 
@@ -116,8 +126,7 @@ namespace Amazon
         private void prodcuts_Load(object sender, EventArgs e)
         {
             LoadDataGrid();
-            UserLogin loginForm = new UserLogin();
-            loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
+
 
         }
         private void LoginForm_UserLoggedIn(object sender, string userEmail)
@@ -127,7 +136,7 @@ namespace Amazon
         }
         private void LoadDataGrid()
         {
-            IQueryable<Product> allProducts = productService.GetAll();
+            IQueryable<Product> allProducts = productService.GetAll().Where(p=>p.Quantity>0);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = allProducts.ToList();
         }
@@ -177,7 +186,7 @@ namespace Amazon
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Clicks >= 1)
+            if (e.Clicks > 0)
             {
                 int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
@@ -202,6 +211,12 @@ namespace Amazon
         private void dataGridView1_MouseCaptureChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CartFrm cartFrm = new CartFrm(UserName.Text);
+            cartFrm.ShowDialog();
         }
     }
 }

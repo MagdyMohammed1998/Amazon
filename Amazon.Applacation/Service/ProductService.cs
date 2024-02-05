@@ -91,7 +91,14 @@ namespace Amazon.Applacation.Service
 
         public Product GetProductByName(string productName)
         {
-            throw new NotImplementedException();
+            if (productName!=null)
+            {
+                return _productRepository.GetProductByName(productName);
+            }
+            else
+            {
+                throw new Exception("ProductNameIsNotRight");
+            }
         }
     }
 }

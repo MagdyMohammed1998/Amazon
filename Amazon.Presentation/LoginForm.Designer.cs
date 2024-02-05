@@ -57,7 +57,7 @@
             EmaillText.Multiline = true;
             EmaillText.Name = "EmaillText";
             EmaillText.Size = new Size(224, 31);
-            EmaillText.TabIndex = 2;
+            EmaillText.TabIndex = 1;
             // 
             // label2
             // 
@@ -80,7 +80,7 @@
             PasworddText.Multiline = true;
             PasworddText.Name = "PasworddText";
             PasworddText.Size = new Size(224, 31);
-            PasworddText.TabIndex = 4;
+            PasworddText.TabIndex = 2;
             // 
             // Login
             // 
@@ -93,7 +93,7 @@
             Login.Margin = new Padding(4, 3, 4, 3);
             Login.Name = "Login";
             Login.Size = new Size(129, 55);
-            Login.TabIndex = 8;
+            Login.TabIndex = 3;
             Login.Text = "Login";
             Login.UseVisualStyleBackColor = false;
             Login.Click += Login_Click_1;

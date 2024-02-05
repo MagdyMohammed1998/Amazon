@@ -34,10 +34,6 @@
             dateTimePicker1 = new DateTimePicker();
             dataGridView1 = new DataGridView();
             label3 = new Label();
-            CartTotalQuantites = new TextBox();
-            CartTotalQuantites1 = new Label();
-            CartTotalPrice = new TextBox();
-            CartTotalPrice1 = new Label();
             cartProducetName = new TextBox();
             ProducetName1 = new Label();
             cartprice = new TextBox();
@@ -47,6 +43,7 @@
             cartQuantatiy1 = new Label();
             cartQuantatiy = new DomainUpDown();
             OrderNow = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -98,7 +95,7 @@
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.Click += dataGridView1_Click;
             dataGridView1.MouseClick += dataGridView1_MouseClick;
-
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -109,46 +106,6 @@
             label3.Size = new Size(126, 21);
             label3.TabIndex = 6;
             label3.Text = "Your Cart Items";
-            // 
-            // CartTotalQuantites
-            // 
-            CartTotalQuantites.Enabled = false;
-            CartTotalQuantites.Location = new Point(148, 365);
-            CartTotalQuantites.Name = "CartTotalQuantites";
-            CartTotalQuantites.Size = new Size(87, 23);
-            CartTotalQuantites.TabIndex = 16;
-            // 
-            // CartTotalQuantites1
-            // 
-            CartTotalQuantites1.AutoSize = true;
-            CartTotalQuantites1.BackColor = SystemColors.Window;
-            CartTotalQuantites1.Font = new Font("Calibri", 12F, FontStyle.Bold);
-            CartTotalQuantites1.ForeColor = SystemColors.ControlText;
-            CartTotalQuantites1.Location = new Point(17, 365);
-            CartTotalQuantites1.Name = "CartTotalQuantites1";
-            CartTotalQuantites1.Size = new Size(121, 19);
-            CartTotalQuantites1.TabIndex = 15;
-            CartTotalQuantites1.Text = "Total Quantites :";
-            // 
-            // CartTotalPrice
-            // 
-            CartTotalPrice.Enabled = false;
-            CartTotalPrice.Location = new Point(148, 416);
-            CartTotalPrice.Name = "CartTotalPrice";
-            CartTotalPrice.Size = new Size(87, 23);
-            CartTotalPrice.TabIndex = 18;
-            // 
-            // CartTotalPrice1
-            // 
-            CartTotalPrice1.AutoSize = true;
-            CartTotalPrice1.BackColor = SystemColors.Window;
-            CartTotalPrice1.Font = new Font("Calibri", 12F, FontStyle.Bold);
-            CartTotalPrice1.ForeColor = SystemColors.ControlText;
-            CartTotalPrice1.Location = new Point(17, 416);
-            CartTotalPrice1.Name = "CartTotalPrice1";
-            CartTotalPrice1.Size = new Size(89, 19);
-            CartTotalPrice1.TabIndex = 17;
-            CartTotalPrice1.Text = "Total Price :";
             // 
             // cartProducetName
             // 
@@ -242,19 +199,32 @@
             // 
             OrderNow.BackColor = SystemColors.ActiveCaption;
             OrderNow.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            OrderNow.Location = new Point(265, 389);
+            OrderNow.Location = new Point(175, 374);
             OrderNow.Name = "OrderNow";
             OrderNow.Size = new Size(155, 29);
             OrderNow.TabIndex = 29;
             OrderNow.Text = "Order Now";
             OrderNow.UseVisualStyleBackColor = false;
             OrderNow.Click += OrderNow_Click;
-
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaption;
+            button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            button1.Location = new Point(351, 465);
+            button1.Name = "button1";
+            button1.Size = new Size(155, 29);
+            button1.TabIndex = 30;
+            button1.Text = "Go To Orders";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // CartFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(762, 506);
+            Controls.Add(button1);
             Controls.Add(OrderNow);
             Controls.Add(cartQuantatiy);
             Controls.Add(cartQuantatiy1);
@@ -264,10 +234,6 @@
             Controls.Add(cartprice1);
             Controls.Add(cartProducetName);
             Controls.Add(ProducetName1);
-            Controls.Add(CartTotalPrice);
-            Controls.Add(CartTotalPrice1);
-            Controls.Add(CartTotalQuantites);
-            Controls.Add(CartTotalQuantites1);
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Controls.Add(dateTimePicker1);
@@ -303,5 +269,6 @@
         private Label cartQuantatiy1;
         private Button OrderNow;
         public DomainUpDown cartQuantatiy;
+        private Button button1;
     }
 }

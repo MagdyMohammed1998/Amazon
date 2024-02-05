@@ -32,8 +32,6 @@
             dataGridView1 = new DataGridView();
             UserName = new TextBox();
             label1 = new Label();
-            label5 = new Label();
-            ordertotalprice = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -79,26 +77,6 @@
             label1.TabIndex = 22;
             label1.Text = "User Name :";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.Window;
-            label5.Font = new Font("Calibri", 12F, FontStyle.Bold);
-            label5.ForeColor = SystemColors.ControlText;
-            label5.Location = new Point(43, 399);
-            label5.Name = "label5";
-            label5.Size = new Size(89, 19);
-            label5.TabIndex = 19;
-            label5.Text = "Total Price :";
-            // 
-            // ordertotalprice
-            // 
-            ordertotalprice.Enabled = false;
-            ordertotalprice.Location = new Point(160, 395);
-            ordertotalprice.Name = "ordertotalprice";
-            ordertotalprice.Size = new Size(142, 23);
-            ordertotalprice.TabIndex = 20;
-            // 
             // order
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -106,8 +84,6 @@
             ClientSize = new Size(713, 494);
             Controls.Add(label1);
             Controls.Add(UserName);
-            Controls.Add(ordertotalprice);
-            Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Name = "order";

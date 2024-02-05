@@ -14,12 +14,17 @@ namespace Amazon.Models.Models
         public int Id { get; set; }
         public StateOrder StateOrder { get; set; }
         public DateTime OrderDate { get; set; }
+        //fk
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-
+        [ForeignKey("Admin")]
+        public int? Admin_Id { get; set; }
         //Relations
-        public virtual IQueryable<OrderDetails> OrderDetail { get; set; }
+
+        public virtual Admin? Admin { get; set; }
+
+        public virtual List<OrderDetails> OrderDetail { get; set; }
 
         public virtual User User { get; set; }
     }

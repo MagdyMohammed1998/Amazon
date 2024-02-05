@@ -19,7 +19,7 @@ namespace Amazon.Models.Models
         public virtual User? User { get; set; }
 
         // Collection navigation property
-        public virtual IQueryable<CartDetails> CartDetail { get; set; }
+        public virtual List<CartDetails> CartDetail { get; set; }
     }
 
 

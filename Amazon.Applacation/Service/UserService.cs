@@ -90,9 +90,9 @@ namespace Amazon.Applacation.Service
             throw new NotImplementedException();
         }
 
-        public User GetUserByEmail(string text)
+        public User GetUserByEmail(string Email)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetUserByEmail(Email);
         }
     }
 

@@ -4,6 +4,7 @@ using Amazon.Infrastructure.Repositories;
 using Amazon.Models.Models;
 using Amazon.Presentation;
 using E_Commerce.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,12 @@ namespace Amazon
     {
 
         IUserService UserService = new UserService(new UserRepository(new AmazonContext()), new AdminRepository(new AmazonContext()));
-
+        IOrderService OrderService = new OrderService(new OrderRepository(new AmazonContext()));
         AmazonContext _Context = new AmazonContext();
-        public order()
+        public order(string _UserName)
         {
             InitializeComponent();
+            UserName.Text = _UserName;
         }
 
         private void order_Load(object sender, EventArgs e)
@@ -63,13 +65,35 @@ namespace Amazon
 
         }
 
-        private void order_Load_1(object sender, EventArgs e)
-        {
+        
+            private void order_Load_1(object sender, EventArgs e)
+            {
+                User currentUser = UserService.GetUserByEmail(UserName.Text);
 
-            UserLogin loginForm = new UserLogin();
-            loginForm.UserLoggedIn += LoginForm_UserLoggedIn;
+                if (currentUser != null)
+                {
+                    var orderSummary = _Context.Orders
+                        .Include(o => o.OrderDetail)  // Ensure that OrderDetail is loaded
+                        .Where(o => o.UserId == currentUser.Id)
+                        .ToList()
+                        .Select(o => new
+                        {
+                            OrderDate = o.OrderDate,
+                            OrderState = o.StateOrder,
+                            TotalPrice = o.OrderDetail?.Sum(od => od.Price * od.Quantity) ?? 0,
+                            TotalQuantity = o.OrderDetail?.Sum(od => od.Quantity) ?? 0
+                        })
+                        .ToList();
 
-        }
+                    dataGridView1.DataSource = orderSummary;
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                }
+            }
+
+        
         private void LoginForm_UserLoggedIn(object sender, string userEmail)
         {
 

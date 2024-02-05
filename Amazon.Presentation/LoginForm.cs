@@ -39,9 +39,11 @@ namespace Amazon.Presentation
             }
             else if (_userService.GetUserEmailAndPassword(email, password))
             {
-                UserPage userPage = new UserPage();
+
+                prodcuts prodcuts = new prodcuts(email);
+
                 UserLoggedIn?.Invoke(this, email);
-                userPage.Show();
+                prodcuts.Show();
                 this.Hide();
             }
             else

@@ -43,6 +43,7 @@
             dataGridView1 = new DataGridView();
             label7 = new Label();
             UserName = new TextBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -84,7 +85,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Calibri", 12F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ControlText;
-            label2.Location = new Point(509, 349);
+            label2.Location = new Point(485, 349);
             label2.Name = "label2";
             label2.Size = new Size(81, 19);
             label2.TabIndex = 8;
@@ -124,7 +125,7 @@
             // TotalPrice
             // 
             TotalPrice.Enabled = false;
-            TotalPrice.Location = new Point(509, 371);
+            TotalPrice.Location = new Point(485, 371);
             TotalPrice.Name = "TotalPrice";
             TotalPrice.Size = new Size(91, 23);
             TotalPrice.TabIndex = 12;
@@ -156,7 +157,7 @@
             AddToCard.Name = "AddToCard";
             AddToCard.Size = new Size(139, 39);
             AddToCard.TabIndex = 17;
-            AddToCard.Text = "Add to Card";
+            AddToCard.Text = "Add to Cart";
             AddToCard.UseVisualStyleBackColor = false;
             AddToCard.Click += AddToCard_Click;
             // 
@@ -176,7 +177,7 @@
             dataGridView1.Location = new Point(37, 113);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(661, 201);
+            dataGridView1.Size = new Size(539, 201);
             dataGridView1.TabIndex = 19;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             dataGridView1.MouseClick += dataGridView1_MouseClick;
@@ -199,15 +200,27 @@
             UserName.ReadOnly = true;
             UserName.Size = new Size(134, 23);
             UserName.TabIndex = 21;
-            UserName.Text = "mi";
             UserName.TextChanged += UserName_TextChanged;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaption;
+            button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            button1.Location = new Point(485, 441);
+            button1.Name = "button1";
+            button1.Size = new Size(107, 39);
+            button1.TabIndex = 22;
+            button1.Text = "Go to Cart";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // prodcuts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(775, 505);
+            ClientSize = new Size(622, 505);
+            Controls.Add(button1);
             Controls.Add(UserName);
             Controls.Add(label7);
             Controls.Add(dataGridView1);
@@ -247,5 +260,7 @@
         private DataGridView dataGridView1;
         private Label label7;
         private TextBox UserName;
+        private Button GoToCart;
+        private Button button1;
     }
 }

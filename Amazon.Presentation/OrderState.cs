@@ -20,8 +20,10 @@ namespace Amazon
     public partial class OrderState : Form
     {
         IUserService UserService = new UserService(new UserRepository(new AmazonContext()), new AdminRepository(new AmazonContext()));
+        IOrderService orderService = new OrderService(new OrderRepository(new AmazonContext()));
 
         AmazonContext _Context = new AmazonContext();
+        int orderID;
         public OrderState()
         {
             InitializeComponent();
@@ -34,24 +36,9 @@ namespace Amazon
 
         private void OrderState_Load(object sender, EventArgs e)
         {
-            // Fetch all orders with details
-            var orderSummary = _Context.Orders
-                .Include(o => o.User)
-                .Select(o => new
-                {
-                    OrderDate = o.OrderDate,
-                    OrderState = o.StateOrder,
-                    TotalPrice = o.OrderDetail.Sum(od => od.Price * od.Quantity),
-                    TotalQuantity = o.OrderDetail.Sum(od => od.Quantity),
-                    Customer = o.User.Name
-                })
-                .ToList();
 
-            // Bind all orders to the DataGridView initially
-            dataGridView1.DataSource = orderSummary;
-
-            UserLogin loginForm = new UserLogin();
-            loginForm.AdminLoggedIn += LoginForm_AdminoggedIn;
+            LoadDatagrid();
+    
 
         }
         private void LoginForm_AdminoggedIn(object sender, string AdminEmail)
@@ -60,12 +47,31 @@ namespace Amazon
             textBox1.Text = AdminEmail;
         }
 
+        private void LoadDatagrid()
+        {
+            comboBoxOrderState.DataSource = Enum.GetValues(typeof(StateOrder));
+            comboBoxOrderState.DropDownStyle = ComboBoxStyle.DropDownList;
+            var orderSummary = _Context.Orders
+                .Include(o => o.User)
+                .Select(o => new
+                {
+                    Customer = o.User.Name,
+                    OrderDate = o.OrderDate,
+                    OrderState = o.StateOrder,
+                    TotalPrice = o.OrderDetail.Sum(od => od.Price * od.Quantity),
+                    TotalQuantity = o.OrderDetail.Sum(od => od.Quantity),
+                    id = o.Id
 
+                })
+                .ToList();
+
+            // Bind all orders to the DataGridView initially
+            dataGridView1.DataSource = orderSummary;
+        }
         private void SearcByUserName_TextChanged(object sender, EventArgs e)
         {
             string searchTerm = SearcByUserName.Text;
 
-            // If the search term is empty, show all orders
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 var allOrders = _Context.Orders
@@ -76,7 +82,8 @@ namespace Amazon
                         OrderState = o.StateOrder,
                         TotalPrice = o.OrderDetail.Sum(od => od.Price * od.Quantity),
                         TotalQuantity = o.OrderDetail.Sum(od => od.Quantity),
-                        Customer = o.User.Name
+                        Customer = o.User.Name,
+                        id = o.Id
                     })
                     .ToList();
 
@@ -84,7 +91,7 @@ namespace Amazon
             }
             else
             {
-                // If there is a search term, filter orders based on the username
+
                 var filteredOrders = _Context.Orders
                     .Include(o => o.User)
                     .Where(o => o.User.Name.Contains(searchTerm))
@@ -94,7 +101,8 @@ namespace Amazon
                         OrderState = o.StateOrder,
                         TotalPrice = o.OrderDetail.Sum(od => od.Price * od.Quantity),
                         TotalQuantity = o.OrderDetail.Sum(od => od.Quantity),
-                        Customer = o.User.Name
+                        Customer = o.User.Name,
+                        id = o.Id
                     })
                     .ToList();
 
@@ -102,32 +110,30 @@ namespace Amazon
             }
         }
 
-       
+
 
         private void comboBoxOrderState_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // string selectedOrderState = comboBoxOrderState.SelectedItem.ToString();
         }
 
         private void UpdateStateOfOrder_Click(object sender, EventArgs e)
         {
-            // Check if any row is selected in the DataGridView
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                // Get the selected row
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
 
-                // Assuming the OrderState is in a specific column (adjust column index accordingly)
                 string currentOrderState = selectedRow.Cells["OrderState"].Value.ToString();
 
-                // Get the new OrderState from the comboBoxOrderState
-                string newOrderState = comboBoxOrderState.SelectedItem.ToString();
 
-              
+                if (comboBoxOrderState.SelectedItem is StateOrder newOrderState)
+                {
 
-               
+                    orderService.UpdateState(orderID, newOrderState,5);
 
-                MessageBox.Show($"Order state updated from {currentOrderState} to {newOrderState}");
+                    MessageBox.Show($"Order state updated from {currentOrderState} to {newOrderState}");
+                    LoadDatagrid();
+
+                }
             }
             else
             {
@@ -135,5 +141,25 @@ namespace Amazon
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Clicks > 0)
+            {
+                int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+
+                 orderID = (int)dataGridView1.Rows[rowIndex].Cells["id"].Value;
+
+
+                comboBoxOrderState.SelectedItem= orderService.GetOrderById(orderID).StateOrder;
+
+               
+
+            }
+        }
     }
 }

@@ -10,6 +10,9 @@ namespace Amazon.Applacation.Contract
     public interface IOrderRepository : Irepository<Order, int>
     {
 
+        public IQueryable<Order> GetOrderByUser(int UserID);
+       
+
 
 
     }

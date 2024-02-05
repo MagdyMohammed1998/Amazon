@@ -26,7 +26,7 @@ namespace Amazon.Applacation.Service
             if (existingCart == null)
             {
                 Cart cart = new Cart();
-                cart.User.Id = Userid;
+                cart.UserId = Userid;
                 var res = _cartRepostory.Add(cart);
 
                 _cartRepostory.Save();

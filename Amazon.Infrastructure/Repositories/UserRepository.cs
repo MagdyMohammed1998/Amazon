@@ -55,5 +55,18 @@ namespace Amazon.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public User GetUserByEmail(string Email)
+        {
+            if (!string.IsNullOrEmpty(Email))
+                { 
+                return _Context.Users.FirstOrDefault(user => user.Email == Email);
+            }
+            else
+            {
+                throw new ArgumentNullException("email");
+            }
+
+        }
     }
 }

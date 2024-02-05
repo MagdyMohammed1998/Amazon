@@ -12,9 +12,17 @@ namespace Amazon.Infrastructure.Repositories
 {
     public class OrderRepository : Repository<Order, int>, IOrderRepository
     {
-        public OrderRepository(AmazonContext context) : base(context)
+        AmazonContext _Context;
+
+        public OrderRepository(AmazonContext amazonContext) : base(amazonContext)
         {
+            _Context = amazonContext;
+
         }
 
+        public IQueryable<Order> GetOrderByUser(int UserID)
+        {
+            return _Context.Orders.Where(o=>o.UserId == UserID);
+        }
     }
 }

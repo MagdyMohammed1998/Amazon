@@ -29,9 +29,10 @@ namespace Amazon
         AmazonContext _Context = new AmazonContext();
 
 
-        public CartFrm()
+        public CartFrm(string _UserName)
         {
             InitializeComponent();
+            UserName.Text = _UserName;
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -230,5 +231,10 @@ namespace Amazon
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            order order = new order(UserName.Text);
+            order.ShowDialog();
+        }
     }
-}      //}
+}     
