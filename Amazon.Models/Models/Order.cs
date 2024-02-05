@@ -18,7 +18,7 @@ namespace Amazon.Models.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        [ForeignKey("Admin")]
+        
        
         //Relations
 

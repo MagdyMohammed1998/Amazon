@@ -18,7 +18,7 @@ namespace Amazon.Applacation.Contract
         bool ValidUniqueEmail(string email);
         int Save();
         void Delete(Admin admin);
-        Admin GetAdmin(string email);
+      
 
     }
 }

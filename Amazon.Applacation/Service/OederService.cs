@@ -9,18 +9,15 @@ namespace Amazon.Applacation.Service
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IAdminRepository _adminRepository;
+  
 
 
-        public OrderService(IOrderRepository orderRepository, IAdminRepository adminRepository)
-        {
-            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
-            _adminRepository = adminRepository ?? throw new ArgumentNullException(nameof(adminRepository));
-        }
         public OrderService(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
+        
         }
+       
         public Order Add(Order order)
         {
             if (order is not null)

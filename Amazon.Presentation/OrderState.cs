@@ -39,7 +39,7 @@ namespace Amazon
         {
 
             LoadDatagrid();
-    
+
 
         }
         private void LoginForm_AdminoggedIn(object sender, string AdminEmail)
@@ -112,7 +112,6 @@ namespace Amazon
         }
 
 
-
         private void comboBoxOrderState_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
@@ -129,7 +128,7 @@ namespace Amazon
                 if (comboBoxOrderState.SelectedItem is StateOrder newOrderState)
                 {
 
-                    orderService.UpdateState(orderID, newOrderState,textBox1.Text);
+                    orderService.UpdateState(orderID, newOrderState, textBox1.Text);
 
                     MessageBox.Show($"Order state updated from {currentOrderState} to {newOrderState}");
                     LoadDatagrid();
@@ -149,18 +148,32 @@ namespace Amazon
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Clicks > 0)
+           
+        }
+
+        private void dataGridView1_MouseClick_1(object sender, MouseEventArgs e)
+        {
+            try
             {
-                int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+                if (e.Clicks > 0)
+                {
+                    int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
-                 orderID = (int)dataGridView1.Rows[rowIndex].Cells["id"].Value;
+                     orderID = (int)dataGridView1.Rows[rowIndex].Cells["id"].Value;
 
 
-                comboBoxOrderState.SelectedItem= orderService.GetOrderById(orderID).StateOrder;
+                    comboBoxOrderState.SelectedItem = orderService.GetOrderById(orderID).StateOrder;
 
-               
 
+
+                }
             }
+            catch (Exception)
+            {
+
+                
+            }
+           
         }
     }
 }
