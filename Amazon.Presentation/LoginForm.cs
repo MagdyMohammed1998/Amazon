@@ -32,8 +32,7 @@ namespace Amazon.Presentation
             if (_adminService.GetAdminEmailAndPassword(email, password))
             {
                
-                adminPanle adminPanle = new adminPanle();
-                AdminLoggedIn?.Invoke(this, email);
+                adminPanle adminPanle = new adminPanle(email);
                 adminPanle.Show();
                 this.Hide();
             }

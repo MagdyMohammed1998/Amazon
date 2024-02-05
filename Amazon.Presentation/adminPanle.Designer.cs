@@ -29,24 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminPanle));
-            label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
+            Email = new TextBox();
+            label1 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.Red;
-            label1.Location = new Point(25, 85);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 19);
-            label1.TabIndex = 0;
-            label1.Text = "Home";
             // 
             // label2
             // 
@@ -82,6 +72,7 @@
             label4.Size = new Size(82, 19);
             label4.TabIndex = 3;
             label4.Text = "Add Admin";
+            label4.Click += label4_Click;
             // 
             // label5
             // 
@@ -107,6 +98,25 @@
             label6.TabIndex = 5;
             label6.Text = "Welcome Admin";
             // 
+            // Email
+            // 
+            Email.Location = new Point(539, 7);
+            Email.Margin = new Padding(4, 3, 4, 3);
+            Email.Name = "Email";
+            Email.Size = new Size(152, 26);
+            Email.TabIndex = 33;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.Red;
+            label1.Location = new Point(11, 84);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 19);
+            label1.TabIndex = 34;
+            label1.Text = "OrderState";
+            // 
             // adminPanle
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -114,12 +124,13 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1029, 570);
+            Controls.Add(label1);
+            Controls.Add(Email);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "adminPanle";
@@ -129,12 +140,12 @@
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
+        private TextBox Email;
+        private Label label1;
     }
 }

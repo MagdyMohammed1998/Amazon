@@ -1,4 +1,5 @@
 ﻿using Amazon.Applacation.Contract;
+using Amazon.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Amazon.Applacation.Service
 {
     public interface IAdminService:IAdminRepository
     {
-
+        Admin AddAdmin(Admin admin);
+        void DeleteAdmin(string email , string password);
+        IQueryable<Admin> GetAllAdmin();
     }
 }

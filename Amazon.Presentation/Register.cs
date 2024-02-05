@@ -46,6 +46,9 @@ namespace Amazon.Presentation
                 _userService.AddUser(user);
                 MessageBox.Show("User Add Successfuly");
                 clear();
+                UserLogin userLogin = new UserLogin();
+                userLogin.Show();
+                this.Close();
             }
             else
             {

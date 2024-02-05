@@ -11,6 +11,13 @@ namespace Amazon.Applacation.Contract
     {
         public bool ValidUniqueEmailAdmin(string email);
         public bool GetAdminEmailAndPassword(string email, string password);
-        
+
+        IQueryable<Admin> GetAllAdmin();
+
+        Admin AddAdmin(Admin entity);
+        bool ValidUniqueEmail(string email);
+        int Save();
+        void Delete(Admin admin);
+
     }
 }

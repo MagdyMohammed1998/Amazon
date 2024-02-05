@@ -39,6 +39,7 @@
             TextBox1 = new TextBox();
             Search = new Button();
             texSearch = new TextBox();
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -154,12 +155,22 @@
             texSearch.Size = new Size(152, 23);
             texSearch.TabIndex = 34;
             // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(445, 12);
+            textBox2.Margin = new Padding(4, 3, 4, 3);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(152, 26);
+            textBox2.TabIndex = 35;
+            // 
             // CategoyForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
             ClientSize = new Size(610, 461);
+            Controls.Add(textBox2);
             Controls.Add(texSearch);
             Controls.Add(Search);
             Controls.Add(TextBox1);
@@ -191,5 +202,6 @@
         private TextBox TextBox1;
         private Button Search;
         private TextBox texSearch;
+        private TextBox textBox2;
     }
 }

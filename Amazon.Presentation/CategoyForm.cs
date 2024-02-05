@@ -19,9 +19,11 @@ namespace Amazon.Presentation
     {
         ICategoryService categoryService;
 
-        public CategoyForm()
+        public CategoyForm(string Email)
         {
             InitializeComponent();
+             textBox2.Text = Email;
+
 
             categoryService = new CategoryService(new CategoryRepository(new AmazonContext()));
 
@@ -32,17 +34,24 @@ namespace Amazon.Presentation
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
+
                 var selectedRow = dataGridView1.SelectedRows[0];
-                
+
                 TextBox1.Text = selectedRow.Cells["Name"].Value.ToString();
 
-            }
+            }      
         }
 
         // add category
         private void button1_Click(object sender, EventArgs e)
         {
             string name = TextBox1.Text;
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Please enter a category name.");
+                return;
+            }
 
             var existingCatgory = categoryService.GetAll().FirstOrDefault(p => p.Name == name);
             if (existingCatgory != null)
@@ -68,22 +77,26 @@ namespace Amazon.Presentation
         // delete category
         private void button2_Click(object sender, EventArgs e)
         {
-            int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
-
-            Category categoryToDelete = categoryService.GetById(CategoryId);
-            if (categoryToDelete != null)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                categoryService.Delete(categoryToDelete);
+                int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
-                CrearTextBoxes();
+                Category categoryToDelete = categoryService.GetById(CategoryId);
+                if (categoryToDelete != null)
+                {
+                    categoryService.Delete(categoryToDelete);
 
-                RefreshDataGridView();
+                    CrearTextBoxes();
 
-                MessageBox.Show("Category Deleted Successfuly:");
-            }
-            else
-            {
-                MessageBox.Show("Please select a Category to delete.");
+                    RefreshDataGridView();
+
+                    MessageBox.Show("Category Deleted Successfuly:");
+                }
+                else
+                {
+                    MessageBox.Show("Please select a Category to delete.");
+                }
+
             }
 
 
@@ -92,29 +105,33 @@ namespace Amazon.Presentation
         // update category
         private void button3_Click(object sender, EventArgs e)
         {
-            int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
-
-            Category CategoryToUpdate = categoryService.GetById(CategoryId);
-
-            if (CategoryToUpdate != null)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                string NewCategory = TextBox1.Text;
+                int CategoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
 
-                CategoryToUpdate.Name = NewCategory;
+                Category CategoryToUpdate = categoryService.GetById(CategoryId);
 
-                categoryService.Update(CategoryToUpdate);
+                if (CategoryToUpdate != null)
+                {
+                    string NewCategory = TextBox1.Text;
 
-                CrearTextBoxes();
+                    CategoryToUpdate.Name = NewCategory;
 
-                RefreshDataGridView();
+                    categoryService.Update(CategoryToUpdate);
 
-                MessageBox.Show("Category Updated Successfuly");
+                    CrearTextBoxes();
 
+                    RefreshDataGridView();
+
+                    MessageBox.Show("Category Updated Successfuly");
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select a Category to update.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Please select a Category to update.");
-            }
+               
 
 
         }
@@ -142,11 +159,16 @@ namespace Amazon.Presentation
 
         private void RefreshDataGridView()
         {
-            IQueryable<Category> Categories = categoryService.GetAll();
+            var Categories = categoryService.GetAll();
+            var SelectedCategory = Categories.Select(c => new
+            {
+                Id = c.Id,
+                Name = c.Name,
+            }).ToList();
 
-            dataGridView1.DataSource = null;
+            //dataGridView1.DataSource = null;
 
-            dataGridView1.DataSource = Categories.ToList();
+            dataGridView1.DataSource = SelectedCategory;
 
         }
 
@@ -172,7 +194,7 @@ namespace Amazon.Presentation
 
         private void button7_Click(object sender, EventArgs e)
         {
-            adminPanle adminPanle = new adminPanle();
+            adminPanle adminPanle = new adminPanle(textBox2.Text);
             adminPanle.Show();
             this.Hide();
         }

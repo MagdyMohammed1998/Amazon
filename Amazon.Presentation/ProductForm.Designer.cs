@@ -29,7 +29,6 @@ namespace Amazon.Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -50,6 +49,7 @@ namespace Amazon.Presentation
             comboBox1 = new ComboBox();
             pictureBox1 = new PictureBox();
             label2 = new Label();
+            textBox5 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -94,6 +94,7 @@ namespace Amazon.Presentation
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Gold;
             label3.Location = new Point(324, 9);
             label3.Name = "label3";
             label3.Size = new Size(184, 24);
@@ -135,7 +136,7 @@ namespace Amazon.Presentation
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(373, 54);
+            dataGridView1.Location = new Point(374, 54);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(482, 301);
             dataGridView1.TabIndex = 16;
@@ -168,6 +169,7 @@ namespace Amazon.Presentation
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Gold;
             label1.Location = new Point(71, 94);
             label1.Name = "label1";
             label1.Size = new Size(49, 19);
@@ -178,6 +180,7 @@ namespace Amazon.Presentation
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Gold;
             label4.Location = new Point(71, 153);
             label4.Name = "label4";
             label4.Size = new Size(43, 19);
@@ -188,6 +191,7 @@ namespace Amazon.Presentation
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Gold;
             label5.Location = new Point(71, 216);
             label5.Name = "label5";
             label5.Size = new Size(67, 19);
@@ -198,6 +202,7 @@ namespace Amazon.Presentation
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Gold;
             label6.Location = new Point(71, 277);
             label6.Name = "label6";
             label6.Size = new Size(86, 19);
@@ -235,7 +240,6 @@ namespace Amazon.Presentation
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.White;
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(26, 344);
             pictureBox1.Name = "pictureBox1";
@@ -249,11 +253,21 @@ namespace Amazon.Presentation
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Gold;
             label2.Location = new Point(71, 23);
             label2.Name = "label2";
             label2.Size = new Size(71, 19);
             label2.TabIndex = 31;
             label2.Text = "Category";
+            // 
+            // textBox5
+            // 
+            textBox5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox5.Location = new Point(802, 9);
+            textBox5.Margin = new Padding(4, 3, 4, 3);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(158, 26);
+            textBox5.TabIndex = 32;
             // 
             // ProductForm
             // 
@@ -261,6 +275,7 @@ namespace Amazon.Presentation
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkCyan;
             ClientSize = new Size(1033, 712);
+            Controls.Add(textBox5);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(comboBox1);
@@ -313,5 +328,6 @@ namespace Amazon.Presentation
         private ComboBox comboBox1;
         private PictureBox pictureBox1;
         private Label label2;
+        private TextBox textBox5;
     }
 }
